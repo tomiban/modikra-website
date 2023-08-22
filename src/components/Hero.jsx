@@ -11,7 +11,7 @@ const Hero = () => {
 					<div className='flex items-center justify-center h-full'>
 						{" "}
 						{/* Añadido */}
-						<div className='lg:max-w-2xl flex flex-col justify-between mx-auto text-center mt-5 '>
+						<div className='lg:max-w-2xl flex flex-col justify-between mx-auto text-center mt-4 '>
 							<h1 className='text-6xl md:text-8xl text-center font-extrabold sm:text-5xl text-white'>
 								MODIKRA{" "}
 								<strong className='block font-extrabold  text-[#716af7] text-xl md:text-3xl '>
