@@ -19,12 +19,12 @@ const SocialIconsHero = () => {
 	}, []);
 
 	return (
-		<div className='flex justify-center text-center items-center mt-10 gap-10 md:mt-20 md:gap-40'>
+		<div className='flex justify-center text-center items-center  gap-10 mt-10 md:mt-20 md:gap-28'>
 			<a
 				href=''
 				className='flex flex-col items-center text-white text-sm md:text-lg font-semibold'>
 				<FaFacebookSquare
-					size={windowWidth < 720 ? 30 : 40}
+					size={40}
 					fill='#1674EA'
 				/>
 				<span className='ml-1'>Facebook</span>
@@ -32,15 +32,15 @@ const SocialIconsHero = () => {
 
 			<a
 				href=''
-				className='flex flex-col items-center text-white text-sm md:text-lg font-semibold ml-5 md:ml-7'>
-				<IgIcon width={windowWidth < 720 ? 30 : 40} />{" "}
+				className='flex flex-col items-center justify-center text-white text-sm md:text-lg font-semibold ml-5 md:ml-10'>
+				<IgIcon width={40} />{" "}
 				<span className='ml-1'>Instagram</span>
 			</a>
 
 			<a
 				href=''
 				className='flex flex-col items-center text-white text-sm md:text-lg font-semibold'>
-				<MlIcon width={windowWidth < 720 ? 50 : 70} />
+				<MlIcon width={60} />
 				<span className='ml-1 mt-[-39px]  md:mt-[-30px]'>Mercadolibre</span>
 			</a>
 		</div>

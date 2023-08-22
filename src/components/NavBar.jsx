@@ -54,7 +54,7 @@ const NavBar = () => {
 						</li>
 					))}
 				</ul>
-				<div class='absolute top-7 right-20 md:static'>
+				<div class='absolute top-9 right-14 md:static'>
 					<Button text={"Catálogo"} />
 				</div>
 			</div>
