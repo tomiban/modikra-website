@@ -9,6 +9,9 @@ export default {
     extend: {
       backgroundImage: {
         "hero-img": "url('assets/img/banner.jpg')"
+      },
+      fontFamily: {
+       montserrat: ['Montserrat']
       }
     },
   },

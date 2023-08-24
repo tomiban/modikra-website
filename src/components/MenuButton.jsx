@@ -2,7 +2,7 @@ const MenuButton = ({ toggleMenu, open }) => {
 
 	return (
 		<button
-			className={`text-white w-10 h-10 relative focus:outline-none`}
+			className={`text-gray-500 w-20 h-20 relative focus:outline-none`}
 			onClick={toggleMenu}>
 			<span className='sr-only'>Open main menu</span>
 			<div className='block w-5 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'>

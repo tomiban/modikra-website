@@ -1,84 +1,60 @@
+import { dataNosotros } from "../data/data.js";
+import { BsClipboardCheck } from "react-icons/bs";
+import { HiOutlineLightBulb } from "react-icons/hi";
+import { PiChair } from "react-icons/pi";
+import Stats from "./Stats.jsx";
 const Nosotros = () => {
+	const [{ first, second },  { cards }] = dataNosotros;
+
 	return (
-		<section className='bg-gray-900 text-white'>
-			<div className='mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8'>
-				<div className='mx-auto max-w-lg text-center'>
-					<h2 className='text-3xl font-bold sm:text-4xl'>
-						Kickstart your marketing
+		<section className='bg-gradient-to-r from-gray-100 to-gray-300 text-white'>
+				<Stats />
+			<div className='mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 p-8'>
+				<div className='mx-auto max-w-2xl text-center font-sans px-4'>
+					<h2 className='text-3xl font-bold sm:text-5xl text-[#001A49]'>
+						Nosotros
 					</h2>
 
-					<p className='mt-4 text-gray-300'>
-						Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-						Consequuntur aliquam doloribus nesciunt eos fugiat. Vitae aperiam
-						fugit consequuntur saepe laborum.
+					<p className='py-4 text-gray-800 text-xl text-center   whitespace-pre-line'>
+						<span>{first}</span> <span className="hidden md:inline" >{second}</span>
 					</p>
+					<span className="bg-slate-800 w-20 "></span>
 				</div>
 
 				<div className='mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'>
-					<a
-						className='block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10'
-						href='/services/digital-campaigns'>
-						<svg
-							xmlns='http://www.w3.org/2000/svg'
-							className='h-10 w-10 text-pink-500'
-							fill='none'
-							viewBox='0 0 24 24'
-							stroke='currentColor'>
-							<path d='M12 14l9-5-9-5-9 5 9 5z' />
-							<path d='M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z' />
-							<path
-								strokeLinecap='round'
-								strokeLinejoin='round'
-								strokeWidth='2'
-								d='M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222'
-							/>
-						</svg>
+					{cards.map((card, index) => (
+						<li key={index}
+							className='block rounded-xl border border-gray-800 p-8 shadow-lg transition hover:border-orange-900/80 hover:shadow-orange-500/30 cursor-pointer'
+							href='/services/digital-campaigns'>
+							{card.icon === "BsClipboardCheck" && (
+								<BsClipboardCheck
+									size={35}
+									color='#FF5A1F'
+								/>
+							)}
+							{card.icon === "HiOutlineLightBulb" && (
+								<HiOutlineLightBulb
+									size={42}
+									color='#FF5A1F'
+								/>
+							)}
+							{card.icon === "PiChair" && (
+								<PiChair
+									size={40}
+									color='#FF5A1F'
+								/>
+							)}
+							<h2 className='mt-4 text-xl font-bold text-[#001A49]'>
+								{card.title}
+							</h2>
 
-						<h2 className='mt-4 text-xl font-bold text-white'>Digital campaigns</h2>
-
-						<p className='mt-1 text-sm text-gray-300'>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ut quo
-							possimus adipisci distinctio alias voluptatum blanditiis
-							laudantium.
-						</p>
-					</a>
-
-	<a
-						className='block rounded-xl border border-gray-800 p-8 shadow-xl transition-all hover:border-blue-700/10 hover:shadow-blue-700/10'
-						href='/services/digital-campaigns'>
-						<svg
-							xmlns='http://www.w3.org/2000/svg'
-							className='h-10 w-10 text-blue-700'
-							fill='none'
-							viewBox='0 0 24 24'
-							stroke='currentColor'>
-							<path d='M12 14l9-5-9-5-9 5 9 5z' />
-							<path d='M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z' />
-							<path
-								strokeLinecap='round'
-								strokeLinejoin='round'
-								strokeWidth='2'
-								d='M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222'
-							/>
-						</svg>
-
-						<h2 className='mt-4 text-xl font-bold text-blue-800'>Digital campaigns</h2>
-
-						<p className='mt-1 text-sm text-slate-700'>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ut quo
-							possimus adipisci distinctio alias voluptatum blanditiis
-							laudantium.
-						</p>
-					</a>
+							<p className='mt-1 text-sm text-gray-800 font-medium '>
+								{card.description}
+							</p>
+						</li>
+					))}
 				</div>
 
-				<div className='mt-12 text-center'>
-					<a
-						href='#'
-						className='inline-block rounded bg-pink-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-pink-700 focus:outline-none focus:ring focus:ring-yellow-400'>
-						Get Started Today
-					</a>
-				</div>
 			</div>
 		</section>
 	);
