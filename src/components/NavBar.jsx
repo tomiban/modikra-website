@@ -55,7 +55,12 @@ const NavBar = () => {
 					<div className='flex items-center gap-2'>
 						<Button
 							text={"Catálogo"}
+							url={"catalogo"}
 							className='hidden md:block'
+							color={"slate"}
+							span={
+								"absolute inset-y-0 left-0 w-[2px] bg-slate-600 transition-all group-hover:w-full group-active:bg-slate-500"
+							}
 						/>
 						<div className='md:hidden text-white cursor-pointer'>
 							<MenuButton
