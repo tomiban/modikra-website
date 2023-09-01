@@ -1,0 +1,21 @@
+/* Estilos personalizados para los botones de navegación */
+.swiper-button-prev,
+.swiper-button-next{
+  padding: 30px;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  color: rgba(8, 21, 48, 0.629);
+  font-size: 50px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: rgba(0, 0, 0, 0.124);
+  border-radius: 100%;
+  color: aqua;
+}

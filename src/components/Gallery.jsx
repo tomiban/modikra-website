@@ -12,7 +12,7 @@ const Gallery = () => {
 		<div
 			className=' py-6 sm:py-8'
 			id='muebles'>
-			<div className='mx-auto max-w-screen-2xl px-4 md:px-8'>
+			<div className=' mx-auto max-w-screen-2xl px-4 md:px-8'>
 				<h2 className='text-2xl font-bold text-[#001A49] lg:text-5xl text-center py-8 '>
 					Muebles
 				</h2>
@@ -26,20 +26,18 @@ const Gallery = () => {
 						url={"catalogo"}
 						color={"orange"}
 						span={
-							"absolute inset-x-0 top-0 h-[2px] bg-orange-500 transition-all group-hover:h-full group-active:bg-orange-500"
+							"hidden md:block md:absolute md:inset-x-0 md:top-0 md:h-[2px] md:bg-orange-500 transition-all md:group-hover:h-full md:group-active:bg-orange-500"
 						}
 					/>
 				</div>
 
-				<div className='grid grid-cols-2 gap-4 sm:grid-cols-8 md:gap-6 xl:gap-8 py-4'>
-					{/* 4 cols-span en md */}
-
+				<div className='grid grid-cols-6 gap-2 ml-2 sm:ml-0 md:grid-cols-8 md:gap-6 xl:gap-8 my-8 '>
 					{cards.map((card, index) =>
 						card.colsMd === 4 ? (
 							<Link
 								key={index}
 								to={`/catalogo/${card.url}`}
-								className={`group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:col-span-4 md:h-80`}>
+								className={`group relative flex h-48 items-end overflow-hidden rounded-lg col-span-3 bg-gray-100 shadow-lg sm:col-span-4 md:h-80`}>
 								<img
 									src={card.img}
 									loading='lazy'
@@ -57,7 +55,7 @@ const Gallery = () => {
 							<Link
 								key={index}
 								to={`/catalogo/${card.url}`}
-								className={`group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:col-span-2 md:h-80`}>
+								className={`group relative flex  h-48 items-end overflow-hidden rounded-lg col-span-3 bg-gray-100 shadow-lg md:col-span-2 md:h-80`}>
 								<img
 									src={card.img}
 									loading='lazy'

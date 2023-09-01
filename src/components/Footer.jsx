@@ -1,174 +1,179 @@
-import { Link } from "react-router-dom";
-import { Button } from "react-scroll";
-import WhiteLogo from "../assets/svg/WhiteLogo"
+import BlackLogo from "../assets/svg/BlackLogo";
+import { Link } from "react-scroll";
+import { Link as LinkRouter } from "react-router-dom";
 const Footer = () => {
 	return (
-		<footer className='bg-gray-900'>
-			<div className='mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8'>
-				<div className='md:flex md:items-start'>
-					<div className='mb-6 md:mb-0'>
-						<a
-							href='https://flowbite.com/'
-							className='flex items-center'>
-							<WhiteLogo />
-							
-						</a>
+		<footer
+			className='bg-gray-900'
+			id='footer'>
+			<div className='max-w-[85rem] p-5 sm:px-6 lg:px-8 lg:pt-10 mx-auto '>
+				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 space-y-3 md:space-y-7'>
+					{/* Logo Column */}
+					<div className='col-span-2 md:w-1/4 flex flex-col items-center mb-5 md:mb-0'>
+						<BlackLogo fill={"#FFFF"} />
+						<p className='text-white font-montserrat'>
+							Muebles en serie y a medida
+						</p>
 					</div>
-					<div className='grid grid-cols-2 gap-1 sm:gap-6 sm:grid-cols-3 mx-auto'>
-							<h2 className='text-sm font-semibold uppercase text-white w-full col-span-3 text-center pb-2 md:p-0'>
-								Páginas
-							</h2>
-					
-						<div>
-							<ul className='text-gray-500 dark:text-gray-400 font-medium '>
-								<li className='mb-4'>
+
+					{/* Links Columns */}
+					<div className='col-span-2 flex justify-evenly space-x-10  text-sm sm:text-base'>
+						<div className=''>
+							<h4 className='font-semibold  text-gray-100 text-center'>
+								Home Page
+							</h4>
+
+							<div className='mt-3 grid grid-cols-2 gap-x-10 md:gap-x-16'>
+								{[
+									{ title: "Inicio", link: "inicio" },
+									{ title: "Nosotros", link: "nosotros" },
+									{ title: "Muebles", link: "muebles" },
+									{ title: "Preguntas", link: "preguntas" },
+									{ title: "Contacto", link: "contacto" },
+									{ title: "Contacto", link: "contacto" },
+								].map((item, index) => (
 									<Link
-										to={"/"}
-										className='hover:underline'>
-										Inicio
-									</Link>
-								</li>
-								<li>
-									<Link
-										to={"/"}
-										className='hover:underline'>
-										Nosotros
-									</Link>
-								</li>
-							</ul>
+										key={index}
+										className=' cursor-pointer inline-flex gap-x-2 text-gray-400 hover:text-gray-200'
+										to={item.link}
+										spy={true}
+										smooth={true}
+										offset={-100}
+										duration={500}>
+										{item.title}
+									</Link>	
+								))}
+							</div>
 						</div>
-						<div>
-							<ul className='text-gray-500 dark:text-gray-400 font-medium grid-row-2'>
-								<li className='mb-4'>
-									<a
-										href='https://github.com/themesberg/flowbite'
-										className='hover:underline '>
-										Catálogo
-									</a>
-								</li>
-								<li>
-									<a
-										href='https://discord.gg/4eeurUVvTy'
-										className='hover:underline'>
-										Colecciones
-									</a>
-								</li>
-							</ul>
+
+						<div className=''>
+							<h4 className='font-semibold text-gray-100 text-center'>
+								Catálogo
+							</h4>
+							<div className='mt-3 grid grid-cols-2 gap-x-16'>
+								{[
+									{ title: "Mesas", link: "mesas" },
+									{ title: "Bahiuts", link: "bahiuts" },
+									{ title: "Sillas", link: "sillas" },
+									{ title: "Escritorios", link: "escritorios" },
+									{ title: "Armarios", link: "armarios" },
+									{ title: "Camas", link: "camas" },
+								].map((item, index) => (
+									<LinkRouter
+										key={index}
+										className='cursor-pointer inline-flex gap-x-2 text-gray-400 hover:text-gray-200'
+										to={`/${item.link}`}>
+										{item.title}
+									</LinkRouter>
+								))}
+							</div>
 						</div>
-						<div>
-							<ul className='text-gray-500 dark:text-gray-400 font-medium grid-row-2'>
-								<li className='mb-4'>
-									<a
-										href='#'
-										className='hover:underline'>
-										Preguntas
-									</a>
-								</li>
-								<li>
-									<a
-										href='#'
-										className='hover:underline'>
-										Info & Contacto
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
+					</div>	
 				</div>
-				<hr className='my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8' />
-				<div className='sm:flex sm:items-center sm:justify-between text-center'>
-					<span className='text-sm text-gray-500 sm:text-center dark:text-gray-400 '>
-						© 2023{" "}
+
+				<div className='h-px bg-gradient-to-r from-transparent via-gray-100 to-transparent mt-8'></div>
+				{/* End Grid */}
+				<div className='mt-5  grid gap-y-2 sm:gap-y-0 sm:flex sm:justify-between sm:items-center md:px-4'>
+					<div className='flex justify-between items-center'>
+						<p className='text-sm text-gray-400'>
+							Dev by Tomás Banchio || © 2023 Todos los derechos reservados
+						</p>
+					</div>
+					{/* End Col */}
+					{/* Social Brands */}
+					<div className='flex justify-center items-center mt-3 md:mt-0'>
 						<a
-							href='https://flowbite.com/'
-							className='hover:underline'>
-							Tomás Banchio
-						</a>
-						. Todos los derechos reservados.
-					</span>
-					<div className='flex mt-4 space-x-5 justify-center sm:mt-0'>
-						<a
-							href='#'
-							className='text-gray-500 hover:text-white'>
+							className='inline-flex justify-center items-center gap-x-3.5 w-10 h-10 text-center text-gray-200 hover:bg-white/[.1] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-gray-900 transition'
+							href='#'>
 							<svg
 								className='w-4 h-4'
-								aria-hidden='true'
 								xmlns='http://www.w3.org/2000/svg'
+								width={16}
+								height={16}
 								fill='currentColor'
-								viewBox='0 0 8 19'>
+								viewBox='0 0 16 16'>
+								<path d='M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z' />
+							</svg>
+						</a>
+						<a
+							className='inline-flex justify-center items-center gap-x-3.5 w-10 h-10 text-center text-gray-200 hover:bg-white/[.1] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-gray-900 transition'
+							href='#'>
+							<svg
+								width={16}
+								height={16}
+								viewBox='0 0 24 24'
+								fill='currentColor'
+								xmlns='http://www.w3.org/2000/svg'>
+								<path d='M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z' />
+							</svg>
+						</a>
+						<a
+							className='inline-flex justify-center items-center gap-x-3.5 w-10 h-10 text-center text-gray-200 hover:bg-white/[.1] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-gray-900 transition'
+							href='#'>
+							<svg
+								width='16'
+								height='16'
+								viewBox='0 0 24 24'
+								fill='currentColor'
+								xmlns='http://www.w3.org/2000/svg'>
+								<path d='M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z' />
+							</svg>
+						</a>
+						<a
+							className='inline-flex justify-center items-center gap-x-3.5 w-10 h-10 text-center text-gray-200 hover:bg-white/[.1] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-gray-900 transition'
+							href='#'>
+							<svg
+								xmlns='http://www.w3.org/2000/svg'
+								width={28}
+								height={32}
+								strokeWidth={1.7}
+								viewBox='0 0 48 48'>
+								<defs>
+									<style>
+										{
+											".a{fill:none;stroke:#FFFF;stroke-linecap:round;stroke-linejoin:round}"
+										}
+									</style>
+								</defs>
+								<ellipse
+									cx={24}
+									cy={24}
+									className='a'
+									rx={19.5}
+									ry={12.978}
+								/>
 								<path
-									fillRule='evenodd'
-									d='M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z'
-									clipRule='evenodd'
+									d='M9.704 15.53a20.834 20.834 0 0 0 6.386 1.866 22.82 22.82 0 0 0 4.546-.773'
+									className='a'
+								/>
+								<path
+									d='M38.882 15.614a8.616 8.616 0 0 1-5.165 1.485c-3.335 0-6.225-2.199-9.215-2.199-2.668 0-7.189 4.373-7.189 5.164s1.31 1.26 2.372.74c.621-.303 3.31-2.914 5.484-2.914s9.219 7.136 9.857 7.806c.989 1.038-.926 3.274-2.149 2.05s-3.41-3.162-3.41-3.162'
+									className='a'
+								/>
+								<path
+									d='M43.4 22.683a23.998 23.998 0 0 0-8.547 2.692M32.58 27.456c.989 1.037-.926 3.273-2.149 2.05s-2.581-2.513-2.581-2.513'
+									className='a'
+								/>
+								<path
+									d='M30.135 29.215c.988 1.037-.927 3.273-2.15 2.05s-2.025-1.962-2.025-1.962'
+									className='a'
+								/>
+								<path
+									d='M24.201 31.316a2.309 2.309 0 0 0 3.649-.186'
+									className='a'
+								/>
+								<path
+									d='M24.201 31.316c.531-.697.49-3.182-2.243-2.688.642-1.219.066-3.146-2.388-2.01a1.69 1.69 0 0 0-3.146-.658 1.454 1.454 0 0 0-2.8-.28c-.544 1.103.296 3.096 2.092 1.976-.182 1.944.84 2.537 2.684 1.78.099 1.91 1.367 1.745 2.273 1.3a1.938 1.938 0 0 0 3.529.58Z'
+									className='a'
+								/>
+								<path
+									d='M4.67 22.279a18.308 18.308 0 0 1 9.064 3.214'
+									className='a'
 								/>
 							</svg>
-							<span className='sr-only'>Facebook page</span>
-						</a>
-						<a
-							href='#'
-							className='text-gray-500 hover:text-white'>
-							<svg
-								className='w-4 h-4'
-								aria-hidden='true'
-								xmlns='http://www.w3.org/2000/svg'
-								fill='currentColor'
-								viewBox='0 0 21 16'>
-								<path d='M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z' />
-							</svg>
-							<span className='sr-only'>Discord community</span>
-						</a>
-						<a
-							href='#'
-							className='text-gray-500 hover:text-white'>
-							<svg
-								className='w-4 h-4'
-								aria-hidden='true'
-								xmlns='http://www.w3.org/2000/svg'
-								fill='currentColor'
-								viewBox='0 0 20 17'>
-								<path
-									fillRule='evenodd'
-									d='M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z'
-									clipRule='evenodd'
-								/>
-							</svg>
-							<span className='sr-only'>Twitter page</span>
-						</a>
-						<a
-							href='#'
-							className='text-gray-500 hover:text-white'>
-							<svg
-								className='w-4 h-4'
-								aria-hidden='true'
-								xmlns='http://www.w3.org/2000/svg'
-								fill='currentColor'
-								viewBox='0 0 20 20'>
-								<path
-									fillRule='evenodd'
-									d='M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z'
-									clipRule='evenodd'
-								/>
-							</svg>
-							<span className='sr-only'>GitHub account</span>
-						</a>
-						<a
-							href='#'
-							className='text-gray-500 hover:text-white'>
-							<svg
-								className='w-4 h-4'
-								aria-hidden='true'
-								xmlns='http://www.w3.org/2000/svg'
-								fill='currentColor'
-								viewBox='0 0 20 20'>
-								<path
-									fillRule='evenodd'
-									d='M10 0a10 10 0 1 0 10 10A10.009 10.009 0 0 0 10 0Zm6.613 4.614a8.523 8.523 0 0 1 1.93 5.32 20.094 20.094 0 0 0-5.949-.274c-.059-.149-.122-.292-.184-.441a23.879 23.879 0 0 0-.566-1.239 11.41 11.41 0 0 0 4.769-3.366ZM8 1.707a8.821 8.821 0 0 1 2-.238 8.5 8.5 0 0 1 5.664 2.152 9.608 9.608 0 0 1-4.476 3.087A45.758 45.758 0 0 0 8 1.707ZM1.642 8.262a8.57 8.57 0 0 1 4.73-5.981A53.998 53.998 0 0 1 9.54 7.222a32.078 32.078 0 0 1-7.9 1.04h.002Zm2.01 7.46a8.51 8.51 0 0 1-2.2-5.707v-.262a31.64 31.64 0 0 0 8.777-1.219c.243.477.477.964.692 1.449-.114.032-.227.067-.336.1a13.569 13.569 0 0 0-6.942 5.636l.009.003ZM10 18.556a8.508 8.508 0 0 1-5.243-1.8 11.717 11.717 0 0 1 6.7-5.332.509.509 0 0 1 .055-.02 35.65 35.65 0 0 1 1.819 6.476 8.476 8.476 0 0 1-3.331.676Zm4.772-1.462A37.232 37.232 0 0 0 13.113 11a12.513 12.513 0 0 1 5.321.364 8.56 8.56 0 0 1-3.66 5.73h-.002Z'
-									clipRule='evenodd'
-								/>
-							</svg>
-							<span className='sr-only'>Dribbble account</span>
 						</a>
 					</div>
+					{/* End Social Brands */}
 				</div>
 			</div>
 		</footer>

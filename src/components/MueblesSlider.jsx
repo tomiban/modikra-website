@@ -1,25 +1,17 @@
-import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
+import "../style.css";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Pagination, Navigation } from "swiper/modules";
-import { data } from "../data/data";
-
-// Import Swiper styles
-import "swiper/css";
-import "./styles.css"
+import { Navigation } from "swiper/modules";
+import { imgMuebles } from "../data/data";
 const MueblesSlider = () => {
-	const galleryData = data.find((item) => item.hasOwnProperty("gallery"));
-	const { cards } = galleryData.gallery;
-
 	return (
 		<Swiper
 			grabCursor={true}
-			Pagination={true}
-			loop={true}
 			navigation={true}
+			loop={true}
 			breakpoints={{
 				320: {
 					slidesPerView: 2,
@@ -30,13 +22,13 @@ const MueblesSlider = () => {
 					spaceBetween: 20,
 				},
 			}}
-			modules={[Navigation, Pagination]}
+			modules={[Navigation]}
 			className='mySwiper'>
-			{cards.map((card, index) => (
+			{imgMuebles.map((img, index) => (
 				<SwiperSlide key={index}>
-					<div className='h-96'>
+					<div className='h-60 md:h-96'>
 						<img
-							src={card.img}
+							src={img}
 							alt=''
 							className='object-cover object-center h-full w-full rounded-md  bg-transparent shadow-md'
 						/>
@@ -44,7 +36,6 @@ const MueblesSlider = () => {
 				</SwiperSlide>
 			))}
 		</Swiper>
-		
 	);
 };
 

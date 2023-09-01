@@ -1,5 +1,5 @@
 import { Link, useRouteError } from "react-router-dom";
-import Home from "./Home";
+
 const NotFound = () => {
     const {error, status, statusText} = useRouteError();
     console.log(error);

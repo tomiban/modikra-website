@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-scroll";
 import { navLinks } from "../data/data.js";
 import WhiteLogo from "../assets/svg/WhiteLogo.jsx";
 import Button from "./Button.jsx";
 import MenuButton from "./MenuButton.jsx";
-import { Link } from "react-router-dom";
 import BlackLogo from "../assets/svg/BlackLogo.jsx";
 
 const NavBar = () => {
@@ -25,27 +25,37 @@ const NavBar = () => {
 				className={`md:px-10 py-6  transition-all duration-500 ease-in bg-gray-200 ${
 					bg ? "md:bg-gray-200" : "md:bg-transparent"
 				} `}>
-				<div className='flex items-center justify-between cursor-pointer w-full'>
+				<div className='flex items-center justify-between cursor-pointer w-full  relative'>
 					<a
 						className='block text-white ml-4'
 						href='/'>
 						<span className='sr-only'>Inicio</span>
-						<BlackLogo className='hidden sm:block' />
+						<BlackLogo
+							fill={"#273349"}
+							className='hidden sm:block'
+						/>
 						<WhiteLogo className='sm:hidden' />
 					</a>
 
 					<nav
-						className={`md:flex md:items-center gap-6 md:pb-0 md:w-auto md:pl-0 pl-8 pb-2 opacity-0 md:opacity-100 bg-gray-200 md:bg-transparent transition-all duration-200 ease-in ${
-							menuOpen ? "opacity-100" : "opacity-0 w-0"
+						className={`md:flex md:items-center gap-6 md:pb-0 md:w-auto w-full opacity-0 md:opacity-100 bg-gray-200 md:bg-transparent transition-all duration-500 ease-in absolute md:static ${
+							menuOpen
+								? "opacity-100 top-[95%]"
+								: "opacity-0 top-[95%] right-[500px]"
 						} `}>
-						<ul className='md:flex md:gap-6 md:pb-0 absolute md:static md:z-auto z-[1] w-full  md:pl-0 px-8   md:opacity-100 bg-gray-200 md:bg-transparent top-[80%] left-0 '>
+						<ul
+							className={`md:flex md:gap-6 md:pb-0  md:static md:z-auto z-[1]  md:pl-0  md:opacity-100 bg-gray-200 md:bg-transparent `}>
 							{navLinks.map((link, index) => (
 								<li
 									key={index}
 									className='text-md'>
 									<Link
-										to={`/${link.url}`}
-										className='md:group text-lg font-semibold text-gray-500 transition duration-100 hover:text-indigo-500 px-4  active:text-indigo-700 py-1 border-b border-gray-300 block  md:inline md:w-full md:border-none'>
+										to={link.url}
+										spy={true}
+										smooth={true}
+										offset={-100}
+										duration={500}
+										className='md:group  font-semibold text-gray-500 transition duration-100 hover:text-indigo-500 px-4  active:text-indigo-700 py-1 border-b border-gray-300 block  md:inline md:w-full md:border-none'>
 										{link.text}
 									</Link>
 								</li>
@@ -59,7 +69,7 @@ const NavBar = () => {
 							className='hidden md:block'
 							color={"slate"}
 							span={
-								"absolute inset-y-0 left-0 w-[2px] bg-slate-600 transition-all group-hover:w-full group-active:bg-slate-500"
+								"hidden md:block md:absolute md:inset-y-0 md:left-0 md:w-[2px] md:bg-slate-500 md:transition-all md:group-hover:w-full md:group-active:bg-slate-500"
 							}
 						/>
 						<div className='md:hidden text-white cursor-pointer'>

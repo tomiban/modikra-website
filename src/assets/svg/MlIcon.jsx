@@ -8,7 +8,7 @@ const MlIcon = (props) => (
 		strokeLinejoin='round'
 		fill='none'
 		viewBox='20 10 7 30'
-		{...props}>
+		>
 		<ellipse
 			cx={24}
 			cy={24}
