@@ -1,6 +1,11 @@
+import Form from "./Form";
+
 const Contacto = () => {
+
 	return (
-		<section className=' text-gray-600 relative  px-4 py-8 sm:px-6 lg:px-8 md:pb-20' id="contacto">
+		<section
+			className=' text-gray-600 relative  px-4 py-8 sm:px-6 lg:px-8 md:pb-20'
+			id='contacto'>
 			<div className='max-w-2xl mx-auto text-center mb-10 lg:mb-8 px-6'>
 				<h2 className='text-2xl font-bold text-[#001A49] lg:text-5xl text-center py-8 md:text-5xl '>
 					Contacto
@@ -47,61 +52,7 @@ const Contacto = () => {
 						</div>
 					</div>
 				</div>
-				<div className='lg:w-2/5 md:w-1/2 bg-white flex flex-col md:ml-auto w-full md:p-8 mt-8 md:mt-0 rounded-md p-6'>
-					<h2 className='text-gray-900 text-lg mb-1 font-medium title-font'>
-						Envíanos un mensaje
-					</h2>
-					<p className='leading-relaxed mb-5 text-gray-600'>
-						No dejes pasar tus dudas, estamos aquí para ayudarte y crear el
-						hogar perfecto junto a vos.
-					</p>
-					<div className='relative mb-4'>
-						<label
-							htmlFor='name'
-							className='leading-7 text-sm text-gray-600'>
-							Nombre
-						</label>
-						<input
-							type='text'
-							id='name'
-							name='name'
-							className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
-						/>
-					</div>
-					<div className='relative mb-4'>
-						<label
-							htmlFor='email'
-							className='leading-7 text-sm text-gray-600'>
-							Email
-						</label>
-						<input
-							type='email'
-							id='email'
-							name='email'
-							className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
-						/>
-					</div>
-					<div className='relative mb-4'>
-						<label
-							htmlFor='message'
-							className='leading-7 text-sm text-gray-600'>
-							Mensaje
-						</label>
-						<textarea
-							id='message'
-							name='message'
-							className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out'
-							defaultValue={""}
-						/>
-					</div>
-					<button className='text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg'>
-						Envíar
-					</button>
-					<p className='text-xs text-gray-500 mt-3 text-center'>
-						Un miembro de nuestro equipo responderá por email lo antes
-						posible.
-					</p>
-				</div>
+				<Form />
 			</div>
 		</section>
 	);

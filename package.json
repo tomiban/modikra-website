@@ -10,9 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "@formkit/auto-animate": "^0.7.0",
-    "flowbite": "^1.8.1",
-    "flowbite-react": "^0.5.0",
+    "@headlessui/react": "^1.7.17",
+    "formik": "^2.4.3",
     "framer-motion": "^10.16.2",
     "react": "^18.2.0",
     "react-animated-numbers": "^0.16.0",
@@ -21,8 +22,7 @@
     "react-router-dom": "^6.15.0",
     "react-scroll": "^1.8.9",
     "swiper": "^10.2.0",
-    "tw-elements": "^1.0.0-rc.1",
-    "tw-elements-react": "^1.0.0-alpha1"
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

@@ -1,9 +1,13 @@
 import { BiLogoWhatsapp } from "react-icons/bi";
 const WhatsAppButton = ({ text = "", type }) => {
-	const textIcon =
-		"https://api.whatsapp.com/send?phone=543496547076&text=Hola,%20quiero%20hablar%20con%20un%20representante..";
-	const textContacto =
-		"https://api.whatsapp.com/send?phone=543496547076&text=Hola,%20necesito%20asesoramiento%20para%20un%20mueble%20a%20medida....";
+	const textIcon = `https://api.whatsapp.com/send?phone=${
+		import.meta.env.VITE_PHONE
+	}&text=Hola,%20quiero%20hablar%20con%20un%20representante..`;
+
+	const textContacto = `https://api.whatsapp.com/send?phone=${
+		import.meta.env.VITE_PHONE
+		}&text=Hola,%20necesito%20asesoramiento%20para%20un%20mueble%20a%20medida....`;
+	
 	const redirectToWhatsApp = (url) => {
 		window.open(url, "_blank");
 	};
@@ -36,7 +40,7 @@ const WhatsAppButton = ({ text = "", type }) => {
 			/>
 			{text}
 			<div className='absolute left-[-140px] top-1/2 transform -translate-y-1/2 p-1 bg-gray-50 text-gray-800 rounded-md shadow-md opacity-0 group-hover:opacity-100 transition-opacity z-40 pointer-events-none'>
-				<span className="text-sm">¿Necesitas ayuda?</span>
+				<span className='text-sm'>¿Necesitas ayuda?</span>
 			</div>
 		</button>
 	);

@@ -19,7 +19,9 @@ const Stats = () => {
 									letterSpacing: 0.5
 								}}
 								animateToNumber={parseInt(item.number)} // Convertir a número
-								configs={[{ mass: 1, tension: 100, friction: 40 }]}>
+								configs={[{
+									mass: 1, tension: 99, friction: 50
+								}]}>
 								{" "}
 							</AnimatedNumbers>
 							<span className='block text-center text-lg font-semibold text-indigo-600 md:text-left'>
