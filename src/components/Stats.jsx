@@ -1,32 +1,17 @@
 import { dataStats } from "../data/data";
-import AnimatedNumbers from "react-animated-numbers";
+
 const Stats = () => {
 	return (
-		<section className='flex flex-col items-center justify-between gap-10 border-t pt-8 lg:flex-row lg:gap-8 px-20'>
+		<div className='flex flex-col items-center justify-between gap-10 lg:flex-row lg:gap-8 px-20'>
 			<div className='-mx-6 grid grid-cols-2 gap-4 md:-mx-8 md:flex md:divide-x divide-slate-500'>
 				{dataStats.map((item, index) => (
 					<div
 						key={index}
 						className='px-6 md:px-8'>
 						<div className='flex justify-center items-end'>
-							<AnimatedNumbers
-								fontStyle={{
-									color: "rgb(79 70 229 / var(--tw-text-opacity)",
-									fontSize: "1.3rem",
-									lineHeight: "1.75rem",
-									textAlign: "center",
-									fontWeight: 700,
-									letterSpacing: 0.5
-								}}
-								animateToNumber={parseInt(item.number)} // Convertir a número
-								configs={[{
-									mass: 1, tension: 99, friction: 50
-								}]}>
-								{" "}
-							</AnimatedNumbers>
-							<span className='block text-center text-lg font-semibold text-indigo-600 md:text-left'>
-								+
-							</span>
+							<p className='block text-center text-lg font-bold text-indigo-800 md:text-left'>
+								{item.number}
+							</p>
 						</div>
 						<span className='block text-center text-sm font-semibold text-gray-800 md:text-left md:text-base tracking-wider'>
 							{item.text}
@@ -42,7 +27,7 @@ const Stats = () => {
 
 				<div className='flex gap-4'>
 					<a
-						href='#'
+						href='https://www.instagram.com'
 						target='_blank'
 						className='text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600'>
 						<svg
@@ -57,7 +42,7 @@ const Stats = () => {
 					</a>
 
 					<a
-						href='#'
+						href='https://www.facebook.com'
 						target='_blank'
 						className='text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600'>
 						<svg
@@ -72,7 +57,7 @@ const Stats = () => {
 					</a>
 
 					<a
-						href='#'
+						href='https://www.linkedin.com'
 						target='_blank'
 						className='text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600'>
 						<svg
@@ -87,7 +72,7 @@ const Stats = () => {
 					</a>
 				</div>
 			</div>
-		</section>
+		</div>
 	);
 };
 export default Stats;

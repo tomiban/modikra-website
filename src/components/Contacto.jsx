@@ -1,10 +1,9 @@
 import Form from "./Form";
 
 const Contacto = () => {
-
 	return (
 		<section
-			className=' text-gray-600 relative  px-4 py-8 sm:px-6 lg:px-8 md:pb-20'
+			className=' text-gray-600 relative py-6 sm:py-8 '
 			id='contacto'>
 			<div className='max-w-2xl mx-auto text-center mb-10 lg:mb-8 px-6'>
 				<h2 className='text-2xl font-bold text-[#001A49] lg:text-5xl text-center py-8 md:text-5xl '>

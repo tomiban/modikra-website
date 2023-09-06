@@ -39,7 +39,7 @@ const WhatsAppButton = ({ text = "", type }) => {
 				fill='currentColor'
 			/>
 			{text}
-			<div className='absolute left-[-140px] top-1/2 transform -translate-y-1/2 p-1 bg-gray-50 text-gray-800 rounded-md shadow-md opacity-0 group-hover:opacity-100 transition-opacity z-40 pointer-events-none'>
+			<div className='absolute left-[-130px] top-1/2 transform -translate-y-1/2 pb-1 px-1 bg-gray-50 text-gray-800 rounded-md shadow-md opacity-0 group-hover:opacity-90 transition-opacity z-40 pointer-events-none '>
 				<span className='text-sm'>¿Necesitas ayuda?</span>
 			</div>
 		</button>

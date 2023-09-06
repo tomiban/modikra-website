@@ -5,3 +5,41 @@
 	font-family: "Montserrat";
 	src: url("./assets/fonts/Montserrat-VariableFont_wght.ttf");
 }
+
+.tracking-in-contract {
+	animation: tracking-in-contract 0.4s linear both;
+}
+@keyframes tracking-in-contract {
+	0% {
+		letter-spacing: 0.6em;
+		opacity: 0;
+	}
+	40% {
+		opacity: 0.6;
+	}
+	100% {
+		letter-spacing: normal;
+		opacity: 1;
+	}
+}
+
+
+---------------------------------------------- */
+
+.tracking-in-expand-forward-top {
+	animation: tracking-in-expand-forward-top 0.4s linear both;
+}
+@keyframes tracking-in-expand-forward-top {
+	0% {
+		letter-spacing: -0.2em;
+		transform: translateZ(-700px) translateY(-100px);
+		opacity: 0;
+	}
+	40% {
+		opacity: 0.6;
+	}
+	100% {
+		transform: translateZ(0) translateY(0);
+		opacity: 1;
+	}
+}

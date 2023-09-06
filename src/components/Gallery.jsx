@@ -1,24 +1,24 @@
 import Button from "./Button";
-import { data } from "../data/data";
+import { dataGallery } from "../data/data";
 import { Link } from "react-router-dom";
 import MueblesMedida from "./MueblesMedida";
-
+import { useDataContext } from "../context/UserContext";
 
 const Gallery = () => {
-	const galleryData = data.find((item) => item.hasOwnProperty("gallery"));
-	const { title, cards } = galleryData.gallery;
-
+	const { imgMuebles, gallery } = useDataContext().dataGallery;
+	const { title, heading, cards } = gallery;
+	
 	return (
-		<div
-			className=' py-6 sm:py-8'
+		<section
+			className='py-6 sm:py-8'
 			id='muebles'>
-			<div className=' mx-auto max-w-screen-2xl px-4 md:px-8'>
+			<div className='max-w-2xl md:container mx-auto px-4 md:px-8'>
 				<h2 className='text-2xl font-bold text-[#001A49] lg:text-5xl text-center py-8 '>
-					Muebles
+					{title}
 				</h2>
 				<div className='mb-4 flex items-center flex-col sm:mb-8 md:mb-8'>
 					<p className='hidden max-w-screen-sm text-xl text-center text-gray-500 md:block mb-8'>
-						{title}
+						{heading}
 					</p>
 
 					<Button
@@ -31,7 +31,7 @@ const Gallery = () => {
 					/>
 				</div>
 
-				<div className='grid grid-cols-6 gap-2 ml-2 sm:ml-0 md:grid-cols-8 md:gap-6 xl:gap-8 my-8 '>
+				<div className='grid grid-cols-6 gap-2 ml-2 sm:ml-0 md:grid-cols-8 md:gap-6 xl:gap-8 mt-8 '>
 					{cards.map((card, index) =>
 						card.colsMd === 4 ? (
 							<Link
@@ -71,10 +71,10 @@ const Gallery = () => {
 							</Link>
 						)
 					)}
-					<MueblesMedida />
+					<MueblesMedida  />
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 };
 export default Gallery;

@@ -1,10 +1,11 @@
 import { VscFoldDown } from "react-icons/vsc";
 import { Link } from "react-scroll";
 
+
 const Hero = () => {
 	return (
 		<div
-			className='bg-hero-img bg-cover bg-no-repeat  md:bg-top  md:bg-fixed py-30 h-screen relative'
+			className='bg-hero-img bg-cover bg-no-repeat  md:bg-top  md:bg-fixed pt-30 h-screen relative'
 			id='inicio'>
 			<div className='mx-auto max-w-screen-lg px-12 md:px-8'>
 				<section className='flex flex-col justify-between gap-6 sm:gap-10 md:mb-16 md:gap-16 py-40'>
@@ -14,10 +15,10 @@ const Hero = () => {
 						</p>
 
 						<h1 className='md:mb-12'>
-							<span className='text-4xl lg:text-7xl font-montserrat font-extrabold  tracking-widest text-slate-800 sm:text-5xl md:text-6xl block py-2'>
+							<span className='font-montserrat font-extrabold  tracking-widest text-slate-800 sm:text-5xl md:text-6xl block py-2'>
 								MODIKRA
 							</span>{" "}
-							<span className=' text-xl font-montserrat font-bold text-orange-500 sm:text-xl md:text-4xl'>
+							<span className='text-xl font-montserrat font-bold text-orange-500 sm:text-xl md:text-4xl'>
 								Muebles para tu hogar.
 							</span>
 						</h1>

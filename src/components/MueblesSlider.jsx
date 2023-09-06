@@ -6,7 +6,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { imgMuebles } from "../data/data";
+import { useDataContext } from "../context/UserContext";
 const MueblesSlider = () => {
+	const { imgMuebles } = useDataContext().dataGallery;
 	return (
 		<Swiper
 			grabCursor={true}

@@ -62,7 +62,7 @@ const Footer = () => {
 									<LinkRouter
 										key={index}
 										className='cursor-pointer inline-flex gap-x-2 text-gray-400 hover:text-gray-200'
-										to={`/${item.link}`}>
+										to={`/catalogo/${item.link}`}>
 										{item.title}
 									</LinkRouter>
 								))}
@@ -84,7 +84,7 @@ const Footer = () => {
 					<div className='flex justify-center items-center mt-3 md:mt-0'>
 						<a
 							className='inline-flex justify-center items-center gap-x-3.5 w-10 h-10 text-center text-gray-200 hover:bg-white/[.1] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-gray-900 transition'
-							href='#'>
+							href='https://www.facebook.com/?locale=es_LA'>
 							<svg
 								className='w-4 h-4'
 								xmlns='http://www.w3.org/2000/svg'
@@ -97,7 +97,7 @@ const Footer = () => {
 						</a>
 						<a
 							className='inline-flex justify-center items-center gap-x-3.5 w-10 h-10 text-center text-gray-200 hover:bg-white/[.1] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-gray-900 transition'
-							href='#'>
+							href='https://www.instagram.com/'>
 							<svg
 								width={16}
 								height={16}
@@ -109,7 +109,7 @@ const Footer = () => {
 						</a>
 						<a
 							className='inline-flex justify-center items-center gap-x-3.5 w-10 h-10 text-center text-gray-200 hover:bg-white/[.1] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-gray-900 transition'
-							href='#'>
+							href='https://www.linkedin.com/'>
 							<svg
 								width='16'
 								height='16'
@@ -119,9 +119,10 @@ const Footer = () => {
 								<path d='M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z' />
 							</svg>
 						</a>
+
 						<a
 							className='inline-flex justify-center items-center gap-x-3.5 w-10 h-10 text-center text-gray-200 hover:bg-white/[.1] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-gray-900 transition'
-							href='#'>
+							href='https://www.mercadolibre.com.ar/'>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
 								width={28}

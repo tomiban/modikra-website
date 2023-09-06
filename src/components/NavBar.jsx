@@ -20,7 +20,7 @@ const NavBar = () => {
 		});
 	}, []);
 	return (
-		<header className={`fixed left-0 top-0 md:shadow-none z-10 w-full`}>
+		<header className={`fixed left-0 top-0 md:shadow-none z-10 w-full p-2 sm:p-0`}>
 			<div
 				className={`md:px-10 py-6  transition-all duration-500 ease-in bg-gray-200 ${
 					bg ? "md:bg-gray-200" : "md:bg-transparent"
@@ -44,7 +44,7 @@ const NavBar = () => {
 								: "opacity-0 top-[95%] right-[500px]"
 						} `}>
 						<ul
-							className={`md:flex md:gap-6 md:pb-0  md:static md:z-auto z-[1]  md:pl-0  md:opacity-100 bg-gray-200 md:bg-transparent `}>
+							className={`md:flex md:gap-6  md:pb-0  md:static md:z-auto z-[1]  md:pl-0  md:opacity-100 bg-gray-200 md:bg-transparent `}>
 							{navLinks.map((link, index) => (
 								<li
 									key={index}
@@ -55,7 +55,7 @@ const NavBar = () => {
 										smooth={true}
 										offset={-100}
 										duration={500}
-										className='md:group  font-semibold text-gray-500 transition duration-100 hover:text-indigo-500 px-4  active:text-indigo-700 py-1 border-b border-gray-300 block  md:inline md:w-full md:border-none'>
+										className='md:group  font-semibold text-gray-500 transition duration-100 hover:text-indigo-500 px-4  active:text-indigo-700 py-2 border-b border-gray-300 block  md:inline md:w-full md:border-none'>
 										{link.text}
 									</Link>
 								</li>
