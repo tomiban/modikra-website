@@ -32,7 +32,7 @@ const WhatsAppButton = ({ text = "", type }) => {
 			onClick={(e) => {
 				redirectToWhatsApp(textIcon);
 			}}
-			className='relative group hidden md:block md:fixed bottom-5 right-8 bg-green-500 rounded-full p-2 shadow-md hover:bg-green-600 transition duration-300 ease-in-out cursor-pointer group'>
+			className=' group  block fixed bottom-5 right-8 bg-green-500 rounded-full p-2 shadow-xl hover:bg-green-600 transition duration-300 ease-in-out cursor-pointer group '>
 			<BiLogoWhatsapp
 				size={40}
 				className='text-white   group-hover:scale-[1.15] transition duration-300'

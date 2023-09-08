@@ -5,10 +5,15 @@ import "../style.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
-import { imgMuebles } from "../data/data";
+
 import { useDataContext } from "../context/UserContext";
+import Spinner from "./Spinner";
 const MueblesSlider = () => {
-	const { imgMuebles } = useDataContext().dataGallery;
+
+	const { imgMuebles } = useDataContext().dataGallery || {};
+	
+	if (!imgMuebles) return <Spinner />;
+
 	return (
 		<Swiper
 			grabCursor={true}

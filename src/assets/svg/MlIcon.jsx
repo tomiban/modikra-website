@@ -1,17 +1,21 @@
 const MlIcon = (props) => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
-		stroke={"#FFBF00"}
-		strokeWidth={2}
-		height={40}
-		strokeLinecap='round'
-		strokeLinejoin='round'
-		fill='none'
-		viewBox='20 10 7 30'
-		>
+		width={28}
+		height={32}
+		strokeWidth={1.7}
+		viewBox='0 0 48 48'>
+		<defs>
+			<style>
+				{
+					".a{fill:none;stroke:#FFFF;stroke-linecap:round;stroke-linejoin:round}"
+				}
+			</style>
+		</defs>
 		<ellipse
 			cx={24}
 			cy={24}
+			className='a'
 			rx={19.5}
 			ry={12.978}
 		/>

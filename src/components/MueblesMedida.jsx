@@ -4,10 +4,11 @@ const MueblesMedida = () => {
 	return (
 		<>
 			<div className='group h-auto rounded-lg grid place-content-center col-span-8 md:col-span-2  px-2 mt-8 '>
-				<h2 className='text-4xl font-bold text-slate-800 tracking-widest leading-snug font-montserrat text-center'>
+				
+				<h2 className='text-xl sm:text-4xl font-bold text-slate-800 tracking-widest leading-snug font-montserrat text-center'>
 					Muebles a Medida
 				</h2>
-				<p className='text-xl text-center leading-snug  text-slate-500 my-4'>
+				<p className='text-base sm:text-xl text-center leading-snug  text-slate-500 my-4'>
 					¿Tenés una idea en mente? Consultános y la hacemos realidad
 				</p>
 				<p className='text-base text-slate-500 text-center tracking-wider font-bold mb-8'>

@@ -1,10 +1,8 @@
-import { dataStats } from "../data/data";
-
-const Stats = () => {
+const Stats = ({stats}) => {
 	return (
 		<div className='flex flex-col items-center justify-between gap-10 lg:flex-row lg:gap-8 px-20'>
 			<div className='-mx-6 grid grid-cols-2 gap-4 md:-mx-8 md:flex md:divide-x divide-slate-500'>
-				{dataStats.map((item, index) => (
+				{stats.map((item, index) => (
 					<div
 						key={index}
 						className='px-6 md:px-8'>

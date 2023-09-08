@@ -6,8 +6,12 @@ import Stats from "./Stats.jsx";
 import { DataContext, useDataContext } from "../context/UserContext.jsx";
 
 const Nosotros = () => {
-	const { title, heading, cards, stats } =
-		useDataContext().dataNosotros.nosotros;
+	const { dataNosotros } = useDataContext();
+	const { title, heading, cards, stats } = dataNosotros?.nosotros || {};
+
+	if (!dataNosotros) {
+		return <p>Loading...</p>; 
+	}
 
 	return (
 		<section
