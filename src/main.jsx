@@ -6,9 +6,9 @@ import { RouterProvider } from "react-router-dom";
 import DataProvider from "./context/UserContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-	<React.StrictMode>
+	
 		<DataProvider>
 			<RouterProvider router={router}></RouterProvider>
 		</DataProvider>
-	</React.StrictMode>
+	
 );

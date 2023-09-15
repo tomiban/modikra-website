@@ -20,7 +20,9 @@
     "react-icons": "^4.10.1",
     "react-router-dom": "^6.15.0",
     "react-scroll": "^1.8.9",
+    "react-simple-typewriter": "^5.0.1",
     "swiper": "^10.2.0",
+    "uuid": "^9.0.1",
     "yup": "^1.2.0"
   },
   "devDependencies": {

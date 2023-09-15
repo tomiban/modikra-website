@@ -16,7 +16,7 @@ const Contacto = () => {
           <Form />
           <div className="bg-gray-300 rounded-lg overflow-hidden p-4 sm:p-8 flex items-center justify-center relative w-full">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6808.2655435863135!2d-60.93195956298216!3d-31.43801154139174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b5136a1e102cdd%3A0xf3a644f8e210b28d!2sGabarret%201824%2C%20S3080AQL%20Esperanza%2C%20Santa%20Fe!5e0!3m2!1ses-419!2sar!4v1692899783164!5m2!1ses-419!2sar"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3403.634366564081!2d-60.939390700000004!3d-31.451731399999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b5133b0270e985%3A0xe82a0dfca5efd4ec!2sG%C3%BCemes%202332%2C%20S3080FKP%20Esperanza%2C%20Santa%20Fe!5e0!3m2!1ses-419!2sar!4v1694522767193!5m2!1ses-419!2sar"
               width="100%"
               height="100%"
               className="absolute inset-0"
@@ -31,7 +31,7 @@ const Contacto = () => {
       DIRECCIÓN
     </h2>
     <p className="mt-1 text-xs sm:text-sm">
-      Nos encontramos en la ciudad de Esperanza, Provincia de Santa Fe, en la calle Gabarret 1824.
+      Nos encontramos en la ciudad de Esperanza, provincia de Santa Fe, en la calle Gral. Güemes 2332, sobre esquina Janssen.
     </p>
   </div>
   <div className="w-full sm:w-1/2 px-2 sm:px-4 mt-4 sm:mt-0">
@@ -40,14 +40,15 @@ const Contacto = () => {
     </h2>
     <a
       className="text-indigo-500 text-xs sm:text-sm leading-relaxed"
-      href="mailto:modikramuebleria@gmail.com"
+      href="mailto:modikramuebles@hotmail.com"
     >
-      modikramuebleria@gmail.com
+      modikramuebles@hotmail.com
     </a>
     <h2 className="text-sm sm:text-base font-semibold text-gray-900 tracking-wider mt-4">
       TELÉFONO
     </h2>
-    <p className="text-xs sm:text-sm leading-relaxed">3496-547076</p>
+    <p className="text-xs sm:text-sm leading-relaxed">3496-550528
+</p>
   </div>
 </div>
 

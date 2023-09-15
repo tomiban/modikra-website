@@ -1,12 +1,19 @@
+import { useState } from "react";
 import { VscFoldDown } from "react-icons/vsc";
 import { Link } from "react-scroll";
+import { Typewriter } from "react-simple-typewriter";
 
 const Hero = () => {
+	const [showCursor, setShowCursor] = useState(true);
+	
+	const handleDone = () => {
+		setShowCursor(false)
+	};
+
 	return (
 		<div
 			className='bg-hero-img bg-cover bg-no-repeat md:bg-top md:bg-fixed h-screen relative pt-[150px] sm:pt-[180px]'
-			id='inicio'
-			>
+			id='inicio'>
 			<div className='mx-auto max-w-screen-lg px-12 md:px-8'>
 				<section className='flex flex-col justify-between gap-6 sm:gap-10 md:mb-16 md:gap-16 '>
 					<div className='flex flex-col justify-center sm:text-center lg:text-left xl:w-9/12'>
@@ -16,9 +23,24 @@ const Hero = () => {
 						<h1 className='mb-3 text-center sm:text-left text-4xl font-montserrat font-extrabold  tracking-widest  text-slate-800 sm:text-5xl md:text-7xl block'>
 							MODIKRA
 						</h1>
-						<span className='text-center sm:text-left text-xl font-montserrat font-bold text-orange-500 sm:text-xl md:text-4xl'>
-							Muebles para tu hogar.
-						</span>
+						<div className='flex space-x-2'>
+							<span className='text-center sm:text-left text-xl font-montserrat font-bold text-orange-500 sm:text-xl md:text-4xl space'>
+								Muebles
+							</span>
+							<span className={'text-center sm:text-left text-xl font-montserrat font-bold text-orange-500 sm:text-xl md:text-4xl'}>
+								<Typewriter
+									words={[" en serie", " a medida", "para tu hogar!"]}
+									cursor={showCursor}
+									cursorBlinking
+									cursorStyle={showCursor && "_"}
+									loop={3}
+									typeSpeed={70}
+									deleteSpeed={50}
+									delaySpeed={1000}
+									onLoopDone={handleDone}
+								/>
+							</span>
+						</div>
 					</div>
 				</section>
 			</div>

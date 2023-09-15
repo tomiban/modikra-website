@@ -13,7 +13,6 @@ const Instagram = () => {
 		try {
 			const data = await fetch(urlGallery);
 			const feedIg = await data.json();
-			console.log(feedIg);
 
 			setFeedIg({ data: feedIg.data, username: feedIg.data[0].username });
 
@@ -27,14 +26,14 @@ const Instagram = () => {
 	};
 
 	useEffect(() => {
-		fetchGallery();
+		fetchGallery()
 	}, []);
 
 
 	return (
 		<section className='py-6 sm:py-8 sm:mt-16'>
-			<div className='mx-auto max-w-4xl md:container relative'>
-				<div className='h-20 sm:h-32 absolute -left-4 -top-7 sm:-left-10 sm:-top-16'>
+			<div className='mx-auto max-w-4xl xl:px-4 md:container relative'>
+				<div className='h-20 sm:h-32 absolute -left-4 -top-7 sm:-left-10 xl:-left-6 sm:-top-16'>
 					<a
 						href={`https://www.instagram.com/${feedIg.username}/`}
 						target='_blank'>

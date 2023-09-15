@@ -1,4 +1,3 @@
-
 .swiper-button-prev,
 .swiper-button-next {
 	padding: 30px;
@@ -16,6 +15,14 @@
 .swiper-button-next:hover {
 	background-color: rgba(0, 0, 0, 0.124);
 	border-radius: 100%;
-	color: aqua;
+}
+
+/* Cambia el color de los bullets inactivos */
+.swiper-pagination-bullet {
+	background-color: rgba(16, 1, 47, 0.631) !important; /* Cambia el color de fondo de los bullets inactivos a verde */
+	opacity: 1; /* Asegúrate de que los bullets inactivos sean completamente visibles */
+	width: 12px; /* Ajusta el tamaño de los bullets inactivos según tus preferencias */
+	height: 12px;
+	margin: 5px; /* Ajusta el espacio entre los bullets inactivos según tus preferencias */
 }
 

@@ -9,8 +9,6 @@ const Features = () => {
 	const { dataNosotros } = useDataContext();
 	const { title, heading, cards, stats } = dataNosotros?.nosotros || {};
 
-	console.log(cards);
-
 	if (!dataNosotros) return <Spinner />;
 
 	return (

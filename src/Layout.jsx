@@ -5,11 +5,12 @@ import { useNavigation } from "react-router-dom";
 import Spinner from "./components/Spinner";
 
 
+
 const Layout = () => {
 	const navigation = useNavigation();
 	return (
 		<>
-			<NavBar />
+			<NavBar  />
 			
 			<main>
 				{navigation.state === "loading" && <Spinner />}
