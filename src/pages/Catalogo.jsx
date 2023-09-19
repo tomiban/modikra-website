@@ -5,20 +5,32 @@ import { useEffect, useState } from "react";
 import WhatsAppButton from "../components/WhatsApp";
 
 const Catálogo = () => {
-	const { dataCatalogo, dataMuebles, loading, mueblesPorCategoria, orderMueblesByCategory } =
-		useDataContext();
+	const { dataCatalogo, dataMuebles, loading, setMueblesPorCategoria, mueblesPorCategoria } = useDataContext();
 
+	const [mueblesCategoriaActual, setMueblesCategoriaActual] = useState();
 	const { categoria: paramCategoria } = useParams();
 	const [catalogo] = dataCatalogo;
-	const [mueblesCategoriaActual, setMueblesCategoriaActual] = useState();
 
+	const orderMueblesByCategory = () => {
+			const tempMueblesPorCategoria = {};
+			dataMuebles?.forEach((mueble) => {
+				const { categoria } = mueble;
+
+				if (!tempMueblesPorCategoria[categoria.toLowerCase()]) {
+					tempMueblesPorCategoria[categoria.toLowerCase()] = [];
+				}
+				tempMueblesPorCategoria[categoria.toLowerCase()].push(mueble);
+			});
+			setMueblesPorCategoria(tempMueblesPorCategoria);
+		}
+	
 	useEffect(() => {
 		if (!loading) {
 			// Si los datos aún no están disponibles, puedes mostrar un mensaje de carga
 			<div>Cargando...</div>;
 		}
 
-		orderMueblesByCategory(paramCategoria)
+		orderMueblesByCategory(paramCategoria);
 		// Iterar a través de los datos de los muebles y clasificarlos por categoría
 		setMueblesCategoriaActual(
 			mueblesPorCategoria[paramCategoria] || dataMuebles

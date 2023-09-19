@@ -24,26 +24,13 @@ const DataProvider = ({ children }) => {
 	const [dataMuebles, setDataMuebles] = useState();
 	const [mueblesPorCategoria, setMueblesPorCategoria] = useState({});
 
-	
+	//!DEBERIA PASAR TODO LOS MUEBLES Y CREAR LAS CATEGORIAS ADENTRO. DUESPUES AL HACER CLICK DEBERIA PASAR CATEGORIA Y ID
 	const fetchData = async () => {
 		const data = await getAllCollections();
 		setDataMuebles(data);
 	};
 
-	const orderMueblesByCategory = (paramCategoria) => {
-		if (paramCategoria) {
-			const tempMueblesPorCategoria = {};
-			dataMuebles?.forEach((mueble) => {
-				const { categoria } = mueble;
 
-				if (!tempMueblesPorCategoria[categoria.toLowerCase()]) {
-					tempMueblesPorCategoria[categoria.toLowerCase()] = [];
-				}
-				tempMueblesPorCategoria[categoria.toLowerCase()].push(mueble);
-			});
-			setMueblesPorCategoria(tempMueblesPorCategoria);
-		} 
-	};
 
 	useEffect(() => {
 		if (dataHome.length === 0) {
@@ -71,8 +58,8 @@ const DataProvider = ({ children }) => {
 				dataCatalogo,
 				dataMuebles,
 				loading,
-				orderMueblesByCategory,
 				mueblesPorCategoria,
+				setMueblesPorCategoria
 			}}>
 			{children}
 		</DataContext.Provider>
