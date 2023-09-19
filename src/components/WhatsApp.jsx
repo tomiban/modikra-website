@@ -1,23 +1,21 @@
 import { BiLogoWhatsapp } from "react-icons/bi";
-const WhatsAppButton = ({ text = "", type }) => {
-	const textIcon = `https://api.whatsapp.com/send?phone=${
+const WhatsAppButton = ({ text = "", type, data="Hola, quiero hablar con un representante..." }) => {
+	
+	const urlWP = `https://api.whatsapp.com/send?phone=${
 		import.meta.env.VITE_PHONE
-	}&text=Hola,%20quiero%20hablar%20con%20un%20representante..`;
-
-	const textContacto = `https://api.whatsapp.com/send?phone=${
-		import.meta.env.VITE_PHONE
-		}&text=Hola,%20necesito%20asesoramiento%20para%20un%20mueble%20a%20medida....`;
+		}&text=`+data?.replace(/ /g, "%20")
 	
 	const redirectToWhatsApp = (url) => {
 		window.open(url, "_blank");
 	};
+
 	return type === "outline" ? (
 		<button className='border-2 border-green-500 rounded-md  text-green-500 hover:bg-green-500 transition-all duration-500 hover:text-white font-bold text-md '>
 			<a
 				className=' p-3 flex items-center'
 				rel='noopener noreferrer'
 				onClick={(e) => {
-					redirectToWhatsApp(textContacto);
+					redirectToWhatsApp(urlWP);
 				}}>
 				{text}
 				<BiLogoWhatsapp
@@ -30,7 +28,7 @@ const WhatsAppButton = ({ text = "", type }) => {
 	) : (
 		<button
 			onClick={(e) => {
-				redirectToWhatsApp(textIcon);
+				redirectToWhatsApp(urlWP);
 			}}
 			className=' group  block fixed bottom-3 right-8 bg-green-500 rounded-full p-2 shadow-xl hover:bg-green-600 transition duration-300 ease-in-out cursor-pointer group '>
 			<BiLogoWhatsapp

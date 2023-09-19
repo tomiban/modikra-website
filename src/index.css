@@ -40,3 +40,7 @@
 		opacity: 1;
 	}
 }
+.mySwiper .swiper-slide-thumb-active {
+  border: 2px solid;
+  border-color: orange;
+}

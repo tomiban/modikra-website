@@ -18,18 +18,31 @@ const DataProvider = ({ children }) => {
 		error,
 		loading,
 	} = useFirestore();
+	
 	const [dataFaqs, dataGallery, dataNosotros] = dataHome;
 	const [categoria, setCategoria] = useState();
 	const [dataMuebles, setDataMuebles] = useState();
+	const [mueblesPorCategoria, setMueblesPorCategoria] = useState({});
 
+	
 	const fetchData = async () => {
-		/* if (categoria) {
-			const data = await getCollection(categoria);
-			setDataCategoria(data);
-		} else {
-		} */
 		const data = await getAllCollections();
 		setDataMuebles(data);
+	};
+
+	const orderMueblesByCategory = (paramCategoria) => {
+		if (paramCategoria) {
+			const tempMueblesPorCategoria = {};
+			dataMuebles?.forEach((mueble) => {
+				const { categoria } = mueble;
+
+				if (!tempMueblesPorCategoria[categoria.toLowerCase()]) {
+					tempMueblesPorCategoria[categoria.toLowerCase()] = [];
+				}
+				tempMueblesPorCategoria[categoria.toLowerCase()].push(mueble);
+			});
+			setMueblesPorCategoria(tempMueblesPorCategoria);
+		} 
 	};
 
 	useEffect(() => {
@@ -58,7 +71,8 @@ const DataProvider = ({ children }) => {
 				dataCatalogo,
 				dataMuebles,
 				loading,
-				setCategoria,
+				orderMueblesByCategory,
+				mueblesPorCategoria,
 			}}>
 			{children}
 		</DataContext.Provider>

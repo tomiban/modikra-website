@@ -19,6 +19,7 @@ const MueblesMedida = () => {
 					<WhatsAppButton
 						text={"Contactanos"}
 						type='outline'
+						data={"Hola, necesito asesoramiento para un mueble a medida...."}
 					/>
 				</div>
 			</div>

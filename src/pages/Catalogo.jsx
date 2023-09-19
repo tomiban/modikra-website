@@ -3,19 +3,14 @@ import { Link, useParams } from "react-router-dom";
 import { useDataContext } from "../context/UserContext";
 import { useEffect, useState } from "react";
 import WhatsAppButton from "../components/WhatsApp";
-import { v4 } from "uuid";
 
 const Catálogo = () => {
-	const { categoria, setCategoria, dataCatalogo, dataMuebles, loading } =
+	const { dataCatalogo, dataMuebles, loading, mueblesPorCategoria, orderMueblesByCategory } =
 		useDataContext();
+
 	const { categoria: paramCategoria } = useParams();
 	const [catalogo] = dataCatalogo;
-	const [mueblesPorCategoria, setMueblesPorCategoria] = useState({});
-
-	let title = catalogo?.title.find((title) =>
-		title.toLowerCase().includes(paramCategoria)
-	);
-	let bannerImg = catalogo?.bannerImg || [];
+	const [mueblesCategoriaActual, setMueblesCategoriaActual] = useState();
 
 	useEffect(() => {
 		if (!loading) {
@@ -23,30 +18,22 @@ const Catálogo = () => {
 			<div>Cargando...</div>;
 		}
 
+		orderMueblesByCategory(paramCategoria)
 		// Iterar a través de los datos de los muebles y clasificarlos por categoría
-		if (paramCategoria) {
-		const tempMueblesPorCategoria = {};
-			dataMuebles?.forEach((mueble) => {
-				const { categoria } = mueble;
-
-				if (!tempMueblesPorCategoria[categoria.toLowerCase()]) {
-					tempMueblesPorCategoria[categoria.toLowerCase()] = [];
-				}
-				tempMueblesPorCategoria[categoria.toLowerCase()].push(mueble);
-			});
-			setMueblesPorCategoria(tempMueblesPorCategoria)
-		} else {
-			setMueblesPorCategoria(dataMuebles);
-		}
+		setMueblesCategoriaActual(
+			mueblesPorCategoria[paramCategoria] || dataMuebles
+		);
 		// Crear un objeto temporal para almacenar los muebles por categoría
 	}, [dataMuebles]);
 
-	const mueblesCategoriaActual =
-		mueblesPorCategoria[paramCategoria] || mueblesPorCategoria;
-	console.log(mueblesPorCategoria);
+	let title = catalogo?.title.find((title) =>
+		title.toLowerCase().includes(paramCategoria)
+	);
+
+	let bannerImg = catalogo?.bannerImg || [];
 
 	return (
-		<>
+		<main>
 			{/* Carousel */}
 			<SliderCatalogo bannerImg={bannerImg} />
 
@@ -92,6 +79,7 @@ const Catálogo = () => {
 							</div>
 						</div>
 					</nav>
+
 					<div className='grid grid-cols-4 mx-auto'>
 						{Array.isArray(mueblesCategoriaActual) &&
 							mueblesCategoriaActual?.map((card, index) => (
@@ -99,7 +87,7 @@ const Catálogo = () => {
 									key={index}
 									className='p-6 col-span-2 md:col-span-1 flex flex-col mx-auto'>
 									<Link
-										to={`/catalogo/${paramCategoria}/${card.titulo.replace(
+										to={`/catalogo/${card.categoria.toLowerCase()}/${card.titulo.replace(
 											/\s+/g,
 											"_"
 										)}_${card.id}`}>
@@ -182,7 +170,7 @@ const Catálogo = () => {
 				</div>
 			</article>
 			<WhatsAppButton />
-		</>
+		</main>
 	);
 };
 export default Catálogo;

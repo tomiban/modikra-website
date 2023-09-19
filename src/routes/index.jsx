@@ -3,7 +3,7 @@ import Home from "../pages/Home";
 import Catalogo from "../pages/Catalogo";
 import NotFound from "../pages/NotFound";
 import Layout from "../Layout";
-import DetailProduct from "../components/DetailProduct";
+import DetailProduct from "../pages/DetailProduct";
 
 export const router = createBrowserRouter([
 	{
