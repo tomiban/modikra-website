@@ -1,7 +1,6 @@
 import Contacto from "../components/Contacto";
 import Hero from "../components/Hero";
 import Gallery from "../components/Gallery";
-import Nosotros from "../components/Nosotros";
 import Faqs from "../components/Faqs";
 import WhatsAppButton from "../components/WhatsApp";
 import Instagram from "../components/Instagram";

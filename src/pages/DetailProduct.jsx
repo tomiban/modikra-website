@@ -11,35 +11,39 @@ import { Navigation, Thumbs, FreeMode } from "swiper/modules";
 import Tag from "../components/Tag";
 import WhatsAppButton from "../components/WhatsApp";
 import { Breadcrumb } from "../components/Breadcrumb";
+import useFirestore from "../config/useFirestore";
+import Spinner from "../components/Spinner";
 
 const DetailProduct = () => {
-	const { mueblesPorCategoria, loading } = useDataContext();
+	const {  loading } = useDataContext();
+	const { getMueble } = useFirestore();
 	const { categoria: paramCategoria, producto: paramProducto } = useParams();
 	const [product, setProduct] = useState(null);
 	const [activeThumb, setActiveThumb] = useState(null);
 
-	const searchProduct = (paramCategoria, paramProducto) => {
-		if (paramProducto) {
-			const partes = paramProducto.split("_");
-			const id = partes[partes.length - 1];
-			const category = mueblesPorCategoria[paramCategoria];
-			const product = category?.find((item) => item.id === id);
-			setProduct(product);
-		}
+	const fetchMueble = async (id) => {
+		return await getMueble(id);
 	};
 
 	useEffect(() => {
+		const searchProduct = async (paramCategoria, paramProducto) => {
+			const partes = paramProducto.split("_");
+			const productId = partes[partes.length - 1];
+
+			if (!product) {
+				const fetchProduct = await fetchMueble(productId);
+				setProduct(fetchProduct);
+				return;
+			}
+
+			setProduct(product);
+		};
+
 		searchProduct(paramCategoria, paramProducto);
 	}, [paramCategoria, paramProducto]);
 
-	console.log(product);
-
-	if (loading) {
-		return <p>Loading...</p>;
-	}
-
 	if (!product) {
-		return <p>Producto no encontrado</p>;
+		return <Spinner />;
 	}
 
 	return (
@@ -101,12 +105,17 @@ const DetailProduct = () => {
 					</div>
 				</div>
 
-				<div className='col-span-2 sm:col-span-1 mx-auto flex flex-col justify-between font-montserrat'>
+				<div className='col-span-2 sm:col-span-1 mx-auto flex flex-col justify-between font-montserrat '>
 					<div>
-						<h1 className='text-3xl font-semibold sm:px-10 '>{product.titulo}</h1>
+						<h1 className='text-2xl sm:text-3xl font-semibold sm:px-10 '>
+							{product.titulo}
+						</h1>
 						<p className='text-lg py-3 sm:px-10'>{product.descripcion}</p>
 						<p className='text-lg py-3 sm:px-10'>
-							<span className='font-semibold'>Medidas:</span> <span>{product.medidas.alto} x {product.medidas.ancho}</span> 
+							<span className='font-semibold'>Medidas:</span>{" "}
+							<span>
+								{product.medidas.alto} x {product.medidas.ancho}
+							</span>
 						</p>
 						<p className='text-lg py-3 sm:px-10'>
 							<span className='font-semibold'>Lustre:</span> {product.color}
@@ -116,15 +125,18 @@ const DetailProduct = () => {
 							<span className='font-semibold'>Categoría:</span>{" "}
 							<Link
 								to={"/catalogo/" + product.categoria.toLowerCase()}
-								className='hover:text-indigo-500'>
+								className='hover:text-indigo-500 capitalize'>
 								{product.categoria}{" "}
 							</Link>{" "}
 						</p>
 						<Link
 							to={"#"}
 							className='text-lg py-3 sm:px-10 flex items-center space-x-2'>
-							{product.tags.map((tag) => (
-								<Tag text={tag} />
+							{product.tags.map((tag, index) => (
+								<Tag
+									key={index}
+									text={tag}
+								/>
 							))}
 						</Link>
 					</div>
@@ -132,11 +144,12 @@ const DetailProduct = () => {
 						<WhatsAppButton
 							text={"Consultar"}
 							type={"outline"}
-						data={`Hola! Estoy interesado en el mueble ${product.titulo}, quiero hablar con un representante. Gracias...`}
+							data={`Hola! Estoy interesado en el mueble ${product.titulo}, quiero hablar con un representante. Gracias...`}
 						/>
 					</div>
 				</div>
 			</div>
+			<WhatsAppButton />
 		</main>
 	);
 };

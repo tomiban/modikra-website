@@ -42,7 +42,7 @@ export const Breadcrumb = ({ text }) => {
 
 				<Link
 					to={`/catalogo/${text.categoria.toLowerCase()}`}
-					className='block transition hover:text-gray-700'>
+					className='block transition hover:text-gray-700 capitalize'>
 					{" "}
 					{text.categoria}{" "}
 				</Link>
@@ -64,7 +64,7 @@ export const Breadcrumb = ({ text }) => {
 				<li>
 					<a
 						href='#'
-						className='block transition hover:text-gray-700'>
+						className='block transition hover:text-gray-700 pt-5 sm:pt-0'>
 						{" "}
 						{text.titulo}{" "}
 					</a>

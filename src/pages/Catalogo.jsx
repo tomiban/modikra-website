@@ -3,40 +3,65 @@ import { Link, useParams } from "react-router-dom";
 import { useDataContext } from "../context/UserContext";
 import { useEffect, useState } from "react";
 import WhatsAppButton from "../components/WhatsApp";
+import Pagination from "../components/Pagination";
+import { useNavigation } from "react-router-dom";
+import Spinner from "../components/Spinner";
+import placeholderImg from "../assets/img/placeholder-img.jpg";
 
-const Catálogo = () => {
-	const { dataCatalogo, dataMuebles, loading, setMueblesPorCategoria, mueblesPorCategoria } = useDataContext();
+const Catalogo = () => {
+	const {
+		dataCatalogo,
+		getCollection,
+		getCollectionByCategory,
+		getTotalElements,
+	} = useDataContext();
 
-	const [mueblesCategoriaActual, setMueblesCategoriaActual] = useState();
 	const { categoria: paramCategoria } = useParams();
 	const [catalogo] = dataCatalogo;
+	const [dataMuebles, setDataMuebles] = useState([]);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [totalPages, setTotalPages] = useState(3); // Inicializamos en 1 página
+	const [categoria, setCategoria] = useState(null);
+	const [imagesLoaded, setImagesLoaded] = useState(false);
+	const [loading, setLoading] = useState(false); // Agregamos un estado de carga
 
-	const orderMueblesByCategory = () => {
-			const tempMueblesPorCategoria = {};
-			dataMuebles?.forEach((mueble) => {
-				const { categoria } = mueble;
+	const elementosPorPagina = 12;
 
-				if (!tempMueblesPorCategoria[categoria.toLowerCase()]) {
-					tempMueblesPorCategoria[categoria.toLowerCase()] = [];
-				}
-				tempMueblesPorCategoria[categoria.toLowerCase()].push(mueble);
-			});
-			setMueblesPorCategoria(tempMueblesPorCategoria);
+	const fetchMuebles = async () => {
+		setLoading(true); // Mostrar spinner de carga
+
+		let data;
+		if (categoria) {
+			data = await getCollectionByCategory(categoria, currentPage);
+		} else {
+			data = await getCollection(currentPage);
 		}
-	
+		setDataMuebles(data);
+
+		setLoading(false); // Ocultar spinner de carga
+	};
+
+	const getPages = async () => {
+		const totalElements = await getTotalElements();
+		const pages = Math.ceil(totalElements / elementosPorPagina);
+		setTotalPages(pages);
+	};
+
+	const handlePageChange = (newPage) => {
+		setCurrentPage(newPage);
+	};
+
 	useEffect(() => {
-		if (!loading) {
-			// Si los datos aún no están disponibles, puedes mostrar un mensaje de carga
-			<div>Cargando...</div>;
+		getPages();
+	}, []);
+
+	useEffect(() => {
+		if (paramCategoria) {
+			setCategoria(paramCategoria);
 		}
 
-		orderMueblesByCategory(paramCategoria);
-		// Iterar a través de los datos de los muebles y clasificarlos por categoría
-		setMueblesCategoriaActual(
-			mueblesPorCategoria[paramCategoria] || dataMuebles
-		);
-		// Crear un objeto temporal para almacenar los muebles por categoría
-	}, [dataMuebles]);
+		fetchMuebles();
+	}, [currentPage, categoria, paramCategoria]);
 
 	let title = catalogo?.title.find((title) =>
 		title.toLowerCase().includes(paramCategoria)
@@ -59,7 +84,7 @@ const Catálogo = () => {
 							<a
 								className='uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl '
 								href='#'>
-								{title}
+								{title || "Catálogo"}
 							</a>
 							<div
 								className='flex items-center'
@@ -92,9 +117,13 @@ const Catálogo = () => {
 						</div>
 					</nav>
 
-					<div className='grid grid-cols-4 mx-auto'>
-						{Array.isArray(mueblesCategoriaActual) &&
-							mueblesCategoriaActual?.map((card, index) => (
+					<div className='grid grid-cols-4 mx-auto gap-4 min-h-[50vh]'>
+						{loading ? (
+							<div className='col-span-4'>
+								<Spinner />
+							</div>
+						) : (
+							dataMuebles?.map((card, index) => (
 								<div
 									key={index}
 									className='p-6 col-span-2 md:col-span-1 flex flex-col mx-auto'>
@@ -104,8 +133,10 @@ const Catálogo = () => {
 											"_"
 										)}_${card.id}`}>
 										<img
-											className='hover:grow hover:shadow-lg'
-											src={card.img}
+											className='hover:grow hover:shadow-lg sm:h-[24rem] aspect-auto w-full'
+											onLoad={() => setImagesLoaded(true)}
+											loading='lazyx'
+											src={imagesLoaded ? card.img : placeholderImg}
 										/>
 										<div
 											className='pt-3 flex items-center justify-between
@@ -116,8 +147,16 @@ const Catálogo = () => {
 										</div>
 									</Link>
 								</div>
-							))}
+							))
+						)}
 					</div>
+				</div>
+				<div className={`flex justify-center ${paramCategoria && "hidden"}`}>
+					<Pagination
+						currentPage={currentPage}
+						totalPages={totalPages}
+						onChangePage={handlePageChange}
+					/>
 				</div>
 			</section>
 
@@ -185,4 +224,5 @@ const Catálogo = () => {
 		</main>
 	);
 };
-export default Catálogo;
+
+export default Catalogo;

@@ -2,7 +2,7 @@ import Form from "./Form";
 
 const Contacto = () => {
   return (
-    <section className="py-6 sm:py-8" id="contacto">
+    <section className="pt-4 sm:py-8" id="contacto">
       <div className="mx-auto px-4 sm:px-8  ">
         <div className="text-center mb-10 lg:mb-8">
           <h2 className="text-2xl sm:text-4xl font-bold text-[#001A49] text-center py-4 sm:py-8 md:text-5xl">
@@ -25,13 +25,13 @@ const Contacto = () => {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
-       <div className="bg-white relative flex flex-wrap p-4 mt-14  md:top-40 sm:mr-4  rounded shadow-md sm:max-w-md md:max-w-lg">
+       <div className="bg-white relative flex flex-wrap p-4 mt-14 md:top-28 mx-auto sm:mr-8  rounded shadow-md sm:max-w-md md:max-w-lg">
   <div className="w-full sm:w-1/2 px-2 sm:px-4">
     <h2 className="text-sm sm:text-base font-semibold text-gray-900 tracking-wider">
       DIRECCIÓN
     </h2>
     <p className="mt-1 text-xs sm:text-sm">
-      Nos encontramos en la ciudad de Esperanza, provincia de Santa Fe, en la calle Gral. Güemes 2332, sobre esquina Janssen.
+      Nos encontramos en la ciudad de Esperanza, provincia de Santa Fe, por Gral. Güemes 2332, sobre esquina Janssen.
     </p>
   </div>
   <div className="w-full sm:w-1/2 px-2 sm:px-4 mt-4 sm:mt-0">

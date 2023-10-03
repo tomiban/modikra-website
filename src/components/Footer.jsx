@@ -57,12 +57,12 @@ const Footer = () => {
 							</h4>
 							<div className='mt-3 grid grid-cols-2 gap-x-5 md:gap-x-14'>
 								{[
-									{ title: "Mesas", link: "mesas" },
-									{ title: "Bahiuts", link: "bahiuts" },
-									{ title: "Sillas", link: "sillas" },
-									{ title: "Escritorios", link: "escritorios" },
-									{ title: "Armarios", link: "armarios" },
-									{ title: "Camas", link: "camas" },
+									{ title: "Mesas", link: "Mesas" },
+									{ title: "Bahiuts", link: "Bahiuts" },
+									{ title: "Sillas", link: "Sillas" },
+									{ title: "Escritorios", link: "Escritorios" },
+									{ title: "Armarios", link: "Armarios" },
+									{ title: "Camas", link: "Camas" },
 								].map((item, index) => (
 									<LinkRouter
 										key={index}

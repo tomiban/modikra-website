@@ -6,7 +6,7 @@ import ComoditySvg from "../assets/svg/ComoditySvg.jsx";
 import DeliverySvg from "../assets/svg/DeliverySvg.jsx";
 import Spinner from "./Spinner.jsx";
 const Features = () => {
-	const { dataNosotros } = useDataContext();
+	const { dataNosotros} = useDataContext();
 	const { title, heading, cards, stats } = dataNosotros?.nosotros || {};
 
 	if (!dataNosotros) return <Spinner />;

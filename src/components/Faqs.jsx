@@ -8,7 +8,7 @@ const Faqs = () => {
   if (!dataFaqs) return <Spinner />;
 
   return (
-    <section className="py-6 sm:py-8" id="preguntas">
+    <section className="pt-4 sm:py-8" id="preguntas">
       <div className="max-w-4xl mx-auto px-4 sm:px-8 ">
         <div className="text-center mb-10 lg:mb-8">
           <h2 className="text-2xl font-bold text-[#001A49] lg:text-4xl text-center py-4 sm:py-6 md:text-5xl">

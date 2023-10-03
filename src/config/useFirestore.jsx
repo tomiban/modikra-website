@@ -7,27 +7,27 @@ import {
 	doc,
 	getDoc,
 	getDocs,
-	setDoc,
+	limit,
+	orderBy,
+	query,
+	startAt,
+	where,
 } from "firebase/firestore";
 
 import { coleccionesMuebles } from "../data/data";
 
 const useFirestore = () => {
 	const [error, setError] = useState();
-	const [dataHome, setDataHome] = useState([]);
-	const [dataCatalogo, setDataCatalogo] = useState([]);
-	const [dataColeccion, setDataColeccion] = useState([]);
-	const [allCollections, setAllCollections] = useState([]);
-	const [muebles, setMuebles] = useState([]);
-
 	const [loading, setLoading] = useState(false);
+	const [lastDoc, setLastDoc] = useState([null]);
+	const [lastPage, setLastPage] = useState(1);
 
 	const getDataHome = async () => {
 		try {
 			setLoading(true);
 			const querySnap = await getDocs(collection(db, "dataHome"));
 			const homeData = querySnap.docs.map((doc) => doc.data());
-			setDataHome(homeData);
+			return homeData;
 		} catch (error) {
 			setError(error);
 			console.log(error);
@@ -41,7 +41,7 @@ const useFirestore = () => {
 			setLoading(true);
 			const querySnap = await getDocs(collection(db, "dataCatalogo"));
 			const catalogoData = querySnap.docs.map((doc) => doc.data());
-			setDataCatalogo(catalogoData);
+			return catalogoData;
 		} catch (error) {
 			setError(error);
 			console.log(error);
@@ -50,115 +50,156 @@ const useFirestore = () => {
 		}
 	};
 
-	const getCollection = async (categoria) => {
+	const updatelastDoc = (lastDocs, lastVisible) => lastDocs.some((lastDoc) => lastDoc?.id == lastVisible.id) ? [...lastDoc] : [...lastDoc, lastVisible];
+	
+	const getCollection = async (currentPage) => {
 		try {
 			setLoading(true);
-			const coleccionRef = collection(
-				db,
-				"dataCatalogo",
-				"catalogo",
-				categoria
-			);
-			const querySnap = await getDocs(coleccionRef);
+			const collectionRef = collection(db, "catalogo");
+			const elementosPorPagina = 12;
+
+			let queryRef;
+
+			if (currentPage == 1) {
+				queryRef = query(
+					collectionRef,
+					orderBy("titulo"),
+					limit(elementosPorPagina)
+				);
+			} else {
+				queryRef = query(
+					collectionRef,
+					orderBy("titulo"),
+					limit(elementosPorPagina),
+					startAt(lastDoc[currentPage - 1])
+				);
+			}
+
+			// Crear una consulta con límite y ordenar por "titulo"
+
+			const querySnap = await getDocs(queryRef);
+
 			const coleccionData = querySnap.docs.map((doc) => ({
-				id: doc.id, // Agrega el ID del documento como propiedad "id"
-				...doc.data(), // Agrega los datos del documento
+				id: doc.id,
+				...doc.data(),
 			}));
-			return coleccionData; // En lugar de setear el estado, retornamos los datos.
+
+			const lastVisible = querySnap.docs[querySnap.docs.length - 1];
+
+			setLastDoc(updatelastDoc(lastDoc, lastVisible));
+
+			return coleccionData;
 		} catch (error) {
 			setError(error);
-			console.log(error);
+			console.error(error);
+			return [];
 		} finally {
 			setLoading(false);
 		}
 	};
 
-	const getAllCollections = async () => {
-		let allMuebles = [];
-
+	
+	const getCollectionByCategory = async (categoria) => {
 		try {
-			const collections = [
-				"Escritorios",
-				"Mesas",
-				"Sillas",
-				"Bahiuts",
-				"Camas",
-				"Armarios",
-			];
+			setLoading(true);
+			const collectionRef = collection(db, "catalogo");
+			const queryRef = query(
+				collectionRef,
+				where("categoria", "==", categoria)
+			);
+			const querySnap = await getDocs(queryRef);
 
-			for (const name of collections) {
-				setLoading(true);
-				const coleccionRef = collection(db, "dataCatalogo", "catalogo", name);
-				const querySnap = await getDocs(coleccionRef);
-				const data = querySnap.docs.map((doc) => ({
-					id: doc.id, // Agrega el ID del documento como propiedad "id"
-					...doc.data(), // Agrega los datos del documento
-				}));
-				allMuebles = [...allMuebles, ...data];
-			}
+			const categoryData = querySnap.docs.map((doc) => ({
+				id: doc.id,
+				...doc.data(),
+			}));
 
-			return allMuebles; // En lugar de setear el estado, retornamos los datos.
+			return categoryData;
 		} catch (error) {
-			console.log(error);
+			setError(error);
+			console.error(error);
+			setLoading(false);
+			return [];
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	const getTotalElements = async () => {
+		try {
+			const coleccionRef = collection(db, "catalogo");
+			const querySnap = await getDocs(coleccionRef);
+			return querySnap.size; // Devuelve la cantidad de documentos en la colección
+		} catch (error) {
+			console.error("Error al obtener el número total de elementos:", error);
+			return 0;
+		}
+	};
+
+	const getMueble = async (id) => {
+		try {
+			setLoading(true);
+			const muebleDocRef = doc(db, "catalogo", id); // Donde "catalogo" es el nombre de la colección
+
+			const docSnap = await getDoc(muebleDocRef);
+
+			if (docSnap.exists()) {
+				const mueble = {
+					id: docSnap.id,
+					...docSnap.data(),
+				};
+
+				return mueble;
+			} else {
+				// Manejar el caso donde no se encuentra ningún documento
+				return null;
+			}
+		} catch (error) {
+			setError(error);
+			console.error(error);
 		} finally {
 			setLoading(false);
 		}
 	};
 
 	const cargarColecciones = async (coleccionMuebles) => {
-		for (const coleccion in coleccionMuebles) {
-			if (Object.hasOwnProperty.call(coleccionMuebles, coleccion)) {
-				const arregloMuebles = coleccionMuebles[coleccion];
-				const coleccionRef = collection(
-					db,
-					"dataCatalogo",
-					"catalogo",
-					coleccion
+		const coleccionRef = collection(db, "catalogo");
+
+		for (const item of coleccionMuebles) {
+			try {
+				console.log(`Agregando ${item.titulo} a ${coleccionRef}`);
+				const imagenURLs = await Promise.all(
+					item.img.map(async (img, index) => {
+						const storageRef = ref(
+							storage,
+							`muebles/product-template-${index + 1}.jpg`
+						);
+						const imagenURL = await getDownloadURL(storageRef);
+						return imagenURL;
+					})
 				);
 
-				for (const item of arregloMuebles) {
-					try {
-						console.log(`Agregando ${item.titulo} a ${coleccion}`);
-						const imagenURLs = await Promise.all(
-							item.img.map(async (img, index) => {
-								const storageRef = ref(
-									storage,
-									`muebles/product-template-${index + 1}.jpg`
-								);
-								const imagenURL = await getDownloadURL(storageRef);
-								return imagenURL;
-							})
-						);
+				// Crear un nuevo objeto con las URL de descarga de las imágenes
+				const muebleConImagen = {
+					...item,
+					img: imagenURLs, // Aquí almacenamos el arreglo de URL de descarga
+				};
 
-						// Crear un nuevo objeto con las URL de descarga de las imágenes
-						const muebleConImagen = {
-							...item,
-							img: imagenURLs, // Aquí almacenamos el arreglo de URL de descarga
-						};
-
-						// Agregar el documento con las URL de descarga a la colección específica
-						await addDoc(coleccionRef, muebleConImagen);
-					} catch (error) {
-						console.error(error);
-					}
-				}
+				// Agregar el documento con las URL de descarga a la colección específica
+				await addDoc(coleccionRef, muebleConImagen);
+			} catch (error) {
+				console.error(error);
 			}
 		}
 	};
 
-	useEffect(() => {
-		//cargarColecciones(coleccionesMuebles);
-	}, []);
-
 	return {
-		dataHome,
 		getDataHome,
-		dataCatalogo,
 		getDataCatalogo,
-		dataColeccion,
 		getCollection,
-		getAllCollections,
-		allCollections,
+		getCollectionByCategory,
+		getTotalElements,
+		getMueble,
 		error,
 		loading,
 	};

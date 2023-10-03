@@ -2,7 +2,7 @@ const Spinner = () => {
 	return (
 		<div
 			role='status'
-			className='grid place-items-center h-screen  bg-gradient-to-r from-gray-100 to-gray-300'>
+			className='flex h-screen justify-center items-center'>
 			<svg
 				aria-hidden='true'
 				className='w-16 h-16 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600'

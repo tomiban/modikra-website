@@ -13,10 +13,10 @@ const Gallery = () => {
 
 	return (
 		<section
-			className='py-6 sm:py-8'
-			id='muebles'>
+			className='py-4 sm:py-8'
+			id='muebles'>|
 			<div className='max-w-2xl md:container mx-auto px-4 md:px-8 flex flex-col justify-center items-center'>
-				<h2 className='text-2xl font-bold text-[#001A49] lg:text-5xl text-center py-8'>
+				<h2 className='text-2xl font-bold text-[#001A49] lg:text-5xl text-center mb-4 sm:mb-8'>
 					{title}
 				</h2>
 				<p className='max-w-2xl text-center mt-2 text-base sm:text-xl text-gray-500 mb-10'>
@@ -32,7 +32,7 @@ const Gallery = () => {
 					}
 				/>
 
-				<div className='grid grid-cols-6 gap-2 md:grid-cols-8 md:gap-6 xl:gap-8 mt-8 mx-auto'>
+				<div className='grid grid-cols-6 gap-2 md:grid-cols-8 md:gap-6 xl:gap-8 mt-8 items-center ml-2 sm:ml-0'>
 					{cards.map((card, index) =>
 						card.colsMd === 4 ? (
 							<Link

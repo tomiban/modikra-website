@@ -78,12 +78,12 @@ const Form = () => {
       }) => (
         <form
           onSubmit={handleSubmit}
-          className="w-full mx-auto bg-white rounded-lg p-6"
+          className="w-full mx-auto bg-white rounded-lg p-6 sm:p-10"
         >
-          <h2 className="text-gray-900 text-lg mb-4 font-medium text-center">
+          <h2 className="text-gray-900 text-lg mb-4 font-medium ">
             Envíanos un mensaje
           </h2>
-          <p className="leading-relaxed mb-5 text-gray-600 text-center">
+          <p className="leading-relaxed mb-5 text-gray-600">
             No dejes pasar tus dudas, estamos aquí para ayudarte y crear el hogar perfecto junto a vos.
           </p>
           <div className="mb-4">

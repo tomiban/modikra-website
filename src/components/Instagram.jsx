@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import followIg from "../assets/img/follow-ig.png";
+import { BsPlayFill } from "react-icons/bs";
 
 const Instagram = () => {
 	const [feedIg, setFeedIg] = useState([]);
 	const [profile, setProfile] = useState("");
 
-	const urlGallery = `https://graph.instagram.com/me/media?fields=id,username,caption,media_url,thumbnail_url,permalink&limit=8&access_token=${
+	const urlGallery = `https://graph.instagram.com/me/media?fields=id,username,caption,media_url,media_type,duration,thumbnail_url,permalink&limit=8&access_token=${
 		import.meta.env.VITE_INSTAGRAM_KEY
 	}`;
 
@@ -13,6 +14,8 @@ const Instagram = () => {
 		try {
 			const data = await fetch(urlGallery);
 			const feedIg = await data.json();
+
+			console.log(feedIg);
 
 			setFeedIg({ data: feedIg.data, username: feedIg.data[0].username });
 
@@ -26,9 +29,8 @@ const Instagram = () => {
 	};
 
 	useEffect(() => {
-		fetchGallery()
+		fetchGallery();
 	}, []);
-
 
 	return (
 		<section className='py-6 sm:py-8 sm:mt-16'>
@@ -69,13 +71,31 @@ const Instagram = () => {
 									}
 									target='_blank'
 									rel='noopener noreferrer'>
-									<div className='flex justify-center items-center h-60 w-full'>
-										<img
-											loading='lazy'
-											src={item.thumbnail_url || item.media_url}
-											alt={item.caption}
-											className='w-full h-full object-cover transition duration-200 group-hover:scale-110 hover:brightness-50'
-										/>
+									<div className='flex justify-center items-center h-60 w-full relative'>
+										{item.media_type === "VIDEO" ? (
+											<>
+												<video
+													controls={false}
+													className='w-full h-full object-cover transition duration-200 group-hover:scale-110 hover:brightness-50'
+													poster={item.thumbnail_url}>
+													<source
+														src={item.media_url}
+														type='video/mp4'
+													/>
+													Tu navegador no soporta etiquetas de video
+												</video>
+												<div className='absolute top-2 right-2'>
+													<BsPlayFill size={"2rem"} color="white" />
+												</div>
+											</>
+										) : (
+											<img
+												loading='lazy'
+												src={item.thumbnail_url || item.media_url}
+												alt={item.caption}
+												className='w-full h-full object-cover transition duration-200 group-hover:scale-110 hover:brightness-50'
+											/>
+										)}
 									</div>
 								</a>
 							</div>
