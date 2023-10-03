@@ -70,12 +70,12 @@ const Catalogo = () => {
 	let bannerImg = catalogo?.bannerImg || [];
 
 	return (
-		<main>
+		<main className="">
 			{/* Carousel */}
 			<SliderCatalogo bannerImg={bannerImg} />
 
 			{/* Product colction */}
-			<section className='bg-white py-8'>
+			<section className='bg-white  py-8'>
 				<div className='container mx-auto flex items-center flex-wrap pt-4 pb-12'>
 					<nav
 						id='store'

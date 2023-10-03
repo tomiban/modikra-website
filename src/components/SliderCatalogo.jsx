@@ -24,7 +24,7 @@ const SliderCatalogo = ({ bannerImg }) => {
 			effect
 			speed={800}
 			loop
-			className='carousel-item absolute h-[50vh] mt-24'>
+			className='carousel-item absolute h-[50vh] mt-36 sm:mt-24'>
 			{bannerImg.map((imgSrc, index) => (
 				<SwiperSlide key={index}>
 					<div
