@@ -84,7 +84,7 @@ const Catalogo = () => {
 							<a
 								className='uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl '
 								href='#'>
-								{title || "Catálogo"}
+								{title || "Ver Todo"}
 							</a>
 							<div
 								className='flex items-center'

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link as ScrollLink} from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
 import { navLinks } from "../data/data.js";
 import Button from "./Button.jsx";
 import MenuButton from "./MenuButton.jsx";
@@ -38,10 +38,19 @@ const NavBar = () => {
 					className={`md:px-10 py-4 transition-all duration-300 ease-in bg-gray-200  ${
 						bg ? "md:bg-gray-300" : "md:bg-transparent"
 					} `}>
-					<div className='grid grid-cols-2 sm:grid-cols-3 cursor-pointer items-center'>
-						{/* PRIMER ELEMENTO - Al extremo izquierdo */}
-						<div className='col-span-3 sm:col-span-1 sm:order-2 mb-4 sm:mb-0'>
-							<h3 className='flex items-center tracking-wide  font-bold text-gray-800 text-xl col-span-3   justify-center '>
+					<div className='grid grid-cols-2 sm:grid-cols-3 items-center'>
+						<Link
+							to='/'
+							className='flex text-white col-span-3 ml-6 sm:ml-0 sm:col-span-1 sm:order-1 justify-center sm:justify-start '>
+							<span className='sr-only'>Inicio</span>
+							<LogoVertical
+								fill={"#273349"}
+								className='hover:scale-105 transition-all duration-500'
+							/>
+						</Link>
+
+						<div className=' col-span-1 sm:order-2 ml-2 sm:ml-0'>
+							<h3 className='flex items-center tracking-wide  font-bold text-gray-800 text-xl    justify-start sm:justify-center'>
 								<svg
 									className='fill-current text-gray-800 mr-2'
 									xmlns='http://www.w3.org/2000/svg'
@@ -53,17 +62,6 @@ const NavBar = () => {
 								CATÁLOGO
 							</h3>
 						</div>
-
-						{/* SEGUNDO ELEMENTO - En el centro */}
-						<Link
-							to='/'
-							className='block text-white col-span-1  sm:col-span-1 sm:order-1 justify-start ml-4'>
-							<span className='sr-only'>Inicio</span>
-							<LogoVertical
-								fill={"#273349"}
-								className='hover:scale-105 transition-all duration-500'
-							/>
-						</Link>
 
 						{/* TERCER ELEMENTO - Al extremo derecho */}
 						<div className='items-center sm:gap-2 col-span-1 sm:order-3 flex justify-end mr-4'>

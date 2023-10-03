@@ -15,7 +15,7 @@ const Button = ({
         color === "orange"
             ? "bg-orange-500 "
             : "border-slate-500 text-white md:text-slate-600 bg-slate-500"
-    } px-8 py-3 md:focus:outline-none md:focus:ring md:bg-transparent hover:bg-opacity-80
+    }  px-3 py-2 sm:px-8 sm:py-3 md:focus:outline-none md:focus:ring md:bg-transparent hover:bg-opacity-80
   `}>
     <span className={span}></span>
     <span

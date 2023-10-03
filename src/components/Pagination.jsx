@@ -8,7 +8,7 @@ const Pagination = ({ totalPages, currentPage, onChangePage }) => {
 					to={"store"}
 					spy={true}
 					smooth={true}
-					offset={-100}
+					offset={-140}
 					duration={500}>
 					<button
 						onClick={() => onChangePage(currentPage - 1)}
@@ -32,7 +32,7 @@ const Pagination = ({ totalPages, currentPage, onChangePage }) => {
 						to={"store"}
 						spy={true}
 						smooth={true}
-						offset={-100}
+						offset={-140}
 						duration={500}>
 						<button
 							onClick={() => onChangePage(index + 1)}
@@ -47,7 +47,7 @@ const Pagination = ({ totalPages, currentPage, onChangePage }) => {
 					to={"store"}
 					spy={true}
 					smooth={true}
-					offset={-100}
+					offset={-140}
 					duration={500}>
 					<button
 						onClick={() => onChangePage(currentPage + 1)}
