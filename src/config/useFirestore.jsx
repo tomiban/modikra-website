@@ -200,6 +200,7 @@ const useFirestore = () => {
 		getCollectionByCategory,
 		getTotalElements,
 		getMueble,
+		cargarColecciones,
 		error,
 		loading,
 	};

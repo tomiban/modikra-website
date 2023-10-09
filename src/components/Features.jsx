@@ -18,7 +18,7 @@ const Features = () => {
 			<Stats stats={stats} />
 			<div className='max-w-4xl mx-auto px-4 sm:px-8 mt-8 sm:mt-16'>
 				<div className='text-center'>
-					<h2 className='text-2xl font-bold text-[#001A49] lg:text-4xl text-center py-4 sm:py-6 md:text-5xl'>
+					<h2 className='text-2xl font-bold text-[#001A49] lg:text-5xl text-center py-4 sm:py-6 md:text-5xl'>
 						{title}
 					</h2>
 					<p className='max-w-2xl mx-auto mt-2 text-base sm:text-lg text-gray-500'>
@@ -30,7 +30,7 @@ const Features = () => {
 						<div
 							key={index}
 							className='flex gap-4 items-start'>
-							<span className='text-violet-600 bg-violet-500/10 p-3 rounded-full'>
+							<span className='text-indigo-500 bg-indigo-500/10 p-3 rounded-full'>
 								{card.icon === "BsClipboardCheck" && (
 									<QualitySvg
 										fill={"rgb(124 58 237 / var(--tw-text-opacity))"}

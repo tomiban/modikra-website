@@ -4,7 +4,6 @@ import { useDataContext } from "../context/UserContext";
 import { useEffect, useState } from "react";
 import WhatsAppButton from "../components/WhatsApp";
 import Pagination from "../components/Pagination";
-import { useNavigation } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import placeholderImg from "../assets/img/placeholder-img.jpg";
 
@@ -63,14 +62,20 @@ const Catalogo = () => {
 		fetchMuebles();
 	}, [currentPage, categoria, paramCategoria]);
 
-	let title = catalogo?.title.find((title) =>
-		title.toLowerCase().includes(paramCategoria)
-	);
+	// Define un objeto de mapeo de parámetros a títulos
+	const titulos = {
+		dormitorio: "Muebles de dormitorio",
+		comedor: "Muebles de comedor",
+		personalizados: "Muebles a medida",
+	};
+
+	// Obtiene el título correspondiente al parámetro o "VER TODOS" por defecto
+	const titulo = titulos[paramCategoria] || "VER TODOS";
 
 	let bannerImg = catalogo?.bannerImg || [];
 
 	return (
-		<main className="">
+		<main className=''>
 			{/* Carousel */}
 			<SliderCatalogo bannerImg={bannerImg} />
 
@@ -81,11 +86,11 @@ const Catalogo = () => {
 						id='store'
 						className='w-full z-30 top-0 px-6 py-1'>
 						<div className='w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3'>
-							<a
+							<h3
 								className='uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl '
 								href='#'>
-								{title || "Ver Todo"}
-							</a>
+								{titulo}
+							</h3>
 							<div
 								className='flex items-center'
 								id='store-nav-content'>

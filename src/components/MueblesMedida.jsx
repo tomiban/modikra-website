@@ -1,3 +1,4 @@
+import ButtonCustom from "./ButtonCustom";
 import MueblesSlider from "./MueblesSlider";
 import WhatsAppButton from "./WhatsApp";
 const MueblesMedida = () => {
@@ -11,16 +12,11 @@ const MueblesMedida = () => {
 				<p className='text-base sm:text-xl text-center leading-snug  text-slate-500 my-4'>
 					¿Tenés una idea en mente? Consultános y la hacemos realidad
 				</p>
-				<p className='text-base text-slate-500 text-center tracking-wider font-bold mb-8'>
+				<p className='text-base text-slate-500 text-center tracking-wider font-bold mb-4 sm:mb-8'>
 					Observa nuestros últimos trabajos
 				</p>
-				<div className='hidden lg:flex items-center justify-center '>
-					
-					<WhatsAppButton
-						text={"Contactanos"}
-						type='outline'
-						data={"Hola, necesito asesoramiento para un mueble a medida...."}
-					/>
+				<div className='flex items-center justify-center mb-4'>
+					<ButtonCustom  text={"Ver Diseños a Medida"}/>
 				</div>
 			</div>
 			<div className='group md:px-20 rounded-lg col-span-6 cursor-grab relative md:mt-16'>

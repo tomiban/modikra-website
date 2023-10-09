@@ -34,7 +34,7 @@ const Gallery = () => {
 
 				<div className='grid grid-cols-6 gap-2 md:grid-cols-8 md:gap-6 xl:gap-8 mt-8 items-center ml-2 sm:ml-0'>
 					{cards.map((card, index) =>
-						card.colsMd === 4 ? (
+						
 							<Link
 								key={index}
 								to={`/catalogo/${card.url}`}
@@ -52,27 +52,7 @@ const Gallery = () => {
 									{card.title}
 								</span>
 							</Link>
-						) : (
-							<Link
-								key={index}
-								to={`/catalogo/${card.url}`}
-								className={`group relative flex h-48 items-end overflow-hidden rounded-lg col-span-3 bg-gray-100 shadow-lg md:col-span-2 md:h-80  text-white transition-all duration-500 hover:underline underline-offset-8`}>
-								<img
-									src={card.img}
-									loading='lazy'
-									alt='Photo by Magicle'
-									className='absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110'
-								/>
-
-								<div className='pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50'></div>
-
-								<span className='relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg '>
-									{card.title}
-								</span>
-
-							
-							</Link>
-						)
+						
 					)}
 					<MueblesMedida />
 				</div>

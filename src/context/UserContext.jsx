@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import useFirestore from "../config/useFirestore";
-
+import { coleccionesMuebles } from "../data/data";
 export const DataContext = createContext();
 export const useDataContext = () => useContext(DataContext);
 
@@ -12,6 +12,7 @@ const DataProvider = ({ children }) => {
     getTotalElements,
     getCollectionByCategory,
     getMueble,
+    cargarColecciones,
 	  error,
 	loading
   } = useFirestore();
