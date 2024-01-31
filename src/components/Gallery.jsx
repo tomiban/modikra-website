@@ -26,9 +26,8 @@ const Gallery = () => {
 				<Button
 					text={"Ver Más"}
 					url={"catalogo"}
-					color={"orange"}
 					span={
-						"hidden md:block md:absolute md:inset-x-0 md:top-0 md:h-[2px] md:bg-orange-500 transition-all md:group-hover:h-full md:group-active:bg-orange-500"
+						"hidden md:block md:absolute md:inset-x-0 md:top-0 md:h-[2px] md:bg-orange-500 md:text-orange-500 transition-all md:group-hover:h-full md:group-active:bg-orange-500"
 					}
 				/>
 

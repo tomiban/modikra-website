@@ -8,11 +8,17 @@ export default {
 			},
 			backgroundImage: {
 				"hero-img": "url('assets/img/banner.jpg')",
-				"catalogo-1": 'url("https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80")',
-				"catalogo-2": "url('https://images.unsplash.com/photo-1533090161767-e6ffed986c88?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjM0MTM2fQ&auto=format&fit=crop&w=1600&q=80')",
+				"catalogo-1":
+					'url("https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80")',
+				"catalogo-2":
+					"url('https://images.unsplash.com/photo-1533090161767-e6ffed986c88?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjM0MTM2fQ&auto=format&fit=crop&w=1600&q=80')",
 			},
 			fontFamily: {
 				montserrat: ["Montserrat", "sans"],
+			},
+			colors: {
+				"cream-200": "#F5F5DC", // Cambia el código de color según tu preferencia
+				"cream-300": "#EEE8AA", // Cambia el código de color según tu preferencia
 			},
 		},
 	},

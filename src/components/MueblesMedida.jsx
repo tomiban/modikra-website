@@ -1,6 +1,6 @@
 import ButtonCustom from "./ButtonCustom";
 import MueblesSlider from "./MueblesSlider";
-import WhatsAppButton from "./WhatsApp";
+
 const MueblesMedida = () => {
 	return (
 		<>
@@ -20,7 +20,7 @@ const MueblesMedida = () => {
 				</div>
 			</div>
 			<div className='group md:px-20 rounded-lg col-span-6 cursor-grab relative md:mt-16'>
-				<div className='relative'>
+				<div className='relative z-0'>
 					<MueblesSlider />
 				</div>
 			</div>

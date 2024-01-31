@@ -11,8 +11,8 @@ const Home = () => {
 	return (
 		<main className='bg-gradient-to-r from-gray-100 to-gray-300'>
 			<Hero />
-			<Features />
 			<Gallery  />
+			<Features />
 			<Faqs  />
 			<Contacto />
 			<Instagram />

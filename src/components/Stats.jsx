@@ -25,7 +25,7 @@ const Stats = ({stats}) => {
 
 				<div className='flex gap-4'>
 					<a
-						href='https://www.instagram.com'
+						href='https://www.instagram.com/modikramuebles/https://www.facebook.com/profile.php?id=100054479050252'
 						target='_blank'
 						className='text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600'>
 						<svg
@@ -40,7 +40,7 @@ const Stats = ({stats}) => {
 					</a>
 
 					<a
-						href='https://www.facebook.com'
+						href='https://www.facebook.com/profile.php?id=100054479050252'
 						target='_blank'
 						className='text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600'>
 						<svg

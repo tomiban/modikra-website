@@ -1,82 +1,78 @@
-import { Link, useParams } from "react-router-dom";
-import { useDataContext } from "../context/UserContext";
-import { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-import "../index.css";
-import { Navigation, Thumbs, FreeMode } from "swiper/modules";
-import Tag from "../components/Tag";
-import WhatsAppButton from "../components/WhatsApp";
-import { Breadcrumb } from "../components/Breadcrumb";
-import useFirestore from "../config/useFirestore";
-import Spinner from "../components/Spinner";
+import { Link, useParams } from "react-router-dom"
+import { useDataContext } from "../context/UserContext"
+import { useEffect, useState } from "react"
+import { Swiper, SwiperSlide } from "swiper/react"
+import "swiper/css"
+import "swiper/css/free-mode"
+import "swiper/css/navigation"
+import "swiper/css/thumbs"
+import "../index.css"
+import { Navigation, Thumbs, FreeMode } from "swiper/modules"
+import Tag from "../components/Tag"
+import WhatsAppButton from "../components/WhatsApp"
+import { Breadcrumb } from "../components/Breadcrumb"
+import useFirestore from "../config/useFirestore"
+import Spinner from "../components/Spinner"
 
 const DetailProduct = () => {
-	const {  loading } = useDataContext();
-	const { getMueble } = useFirestore();
-	const { categoria: paramCategoria, producto: paramProducto } = useParams();
-	const [product, setProduct] = useState(null);
-	const [activeThumb, setActiveThumb] = useState(null);
+	const { getMueble } = useFirestore()
+	const { categoria: paramCategoria, producto: paramProducto } = useParams()
+	const [product, setProduct] = useState()
+	const [activeThumb, setActiveThumb] = useState(null)
 
 	const fetchMueble = async (id) => {
-		return await getMueble(id);
-	};
+		return await getMueble(id)
+	}
 
 	useEffect(() => {
-		const searchProduct = async (paramCategoria, paramProducto) => {
-			const partes = paramProducto.split("_");
-			const productId = partes[partes.length - 1];
+		const searchProduct = async (paramProducto) => {
+			const productId = paramProducto.split("_").pop()
 
 			if (!product) {
-				const fetchProduct = await fetchMueble(productId);
-				setProduct(fetchProduct);
-				return;
+				const fetchProduct = await fetchMueble(productId)
+				setProduct(fetchProduct)
+				return
 			}
+		}
 
-			setProduct(product);
-		};
+		searchProduct(paramProducto)
+	}, [paramCategoria, paramProducto])
 
-		searchProduct(paramCategoria, paramProducto);
-	}, [paramCategoria, paramProducto]);
-
+	
 	if (!product) {
-		return <Spinner />;
+		return <Spinner />
 	}
 
 	return (
-		<main className='min-h-screen py-20 mx-auto'>
+		<main className='min-h-screen py-10 mx-auto'>
 			<div className='grid grid-cols-2 my-20 gap-10 px-10'>
-				<div className='col-span-2'>
+				 <div className='col-span-2'>
 					<Breadcrumb
 						text={{ categoria: product.categoria, titulo: product.titulo }}
 					/>
 				</div>
-				<div className='col-span-2 sm:col-span-1 rounded-lg shadow-lg'>
+				<div className='col-span-2 sm:col-span-1 rounded-lg shadow-lg mb-28 sm:mb-0 z-0'>
 					<Swiper
-						loop={true}
-						spaceBetween={10}
-						navigation={true}
-						thumbs={{ swiper: activeThumb }}
-						grabCursor={true}
-						modules={[FreeMode, Navigation, Thumbs]}
-						className='h-80'>
-						{product.img.map((img, index) => (
-							<SwiperSlide
-								key={index}
-								className=''>
-								<div className='relative overflow-hidden w-full h-80'>
-									<img
-										src={img}
-										alt={product.titulo}
-										className='w-full h-full object-cover absolute top-0 left-0'
-									/>
-								</div>
-							</SwiperSlide>
-						))}
-					</Swiper>
+  loop={true}
+  spaceBetween={10}
+  navigation={true}
+  thumbs={{ swiper: activeThumb }}
+  grabCursor={true}
+  modules={[FreeMode, Navigation, Thumbs]}
+  className='h-[26rem]'
+>
+  {product.img.map((img, index) => (
+    <SwiperSlide key={index} className='z-0'>
+      <div className='relative overflow-hidden w-full h-full aspect-w-4 aspect-h-3 bg-gray-200'>
+        <img
+          src={img}
+          alt={product.titulo}
+          className='w-full h-full object-contain absolute top-0 left-0'
+        />
+      </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
 					<div className='mt-2'>
 						<Swiper
 							onSwiper={setActiveThumb}
@@ -86,7 +82,7 @@ const DetailProduct = () => {
 							freeMode={true}
 							watchSlidesProgress={true}
 							modules={[FreeMode, Navigation, Thumbs]}
-							className='h-28 mySwiper'>
+							className='h-28 mySwiper z-0'>
 							{product.img.map((img, index) => (
 								<SwiperSlide
 									key={index}
@@ -140,18 +136,18 @@ const DetailProduct = () => {
 							))}
 						</Link>
 					</div>
-					<div className='mt-4 sm:mt-0 sm:px-10'>
+					<div className='mt-4  sm:px-10'>
 						<WhatsAppButton
 							text={"Consultar"}
 							type={"outline"}
-							data={`Hola! Estoy interesado en el mueble ${product.titulo}, quiero hablar con un representante. Gracias...`}
+							data={`Hola! Estoy interesado en el mueble ${product.titulo}, quiero hablar con un vendedor. Gracias...`}
 						/>
 					</div>
-				</div>
+				</div> 
 			</div>
 			<WhatsAppButton />
 		</main>
-	);
-};
+	)
+}
 
-export default DetailProduct;
+export default DetailProduct

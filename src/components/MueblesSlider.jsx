@@ -30,7 +30,7 @@ const MueblesSlider = () => {
 				},
 			}}
 			modules={[Navigation]}
-			className='mySwiper'>
+			className='mySwiper '>
 			{imgMuebles.map((img, index) => (
 				<SwiperSlide key={index}>
 					<div className='h-60 md:h-96'>

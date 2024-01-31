@@ -1,11 +1,11 @@
-import SliderCatalogo from "../components/SliderCatalogo";
-import { Link, useParams } from "react-router-dom";
-import { useDataContext } from "../context/UserContext";
-import { useEffect, useState } from "react";
-import WhatsAppButton from "../components/WhatsApp";
-import Pagination from "../components/Pagination";
-import Spinner from "../components/Spinner";
-import placeholderImg from "../assets/img/placeholder-img.jpg";
+import SliderCatalogo from "../components/SliderCatalogo"
+import { Link, useParams } from "react-router-dom"
+import { useDataContext } from "../context/UserContext"
+import { useEffect, useState } from "react"
+import WhatsAppButton from "../components/WhatsApp"
+import Pagination from "../components/Pagination"
+import Spinner from "../components/Spinner"
+import placeholderImg from "../assets/img/placeholder-img.jpg"
 
 const Catalogo = () => {
 	const {
@@ -13,75 +13,77 @@ const Catalogo = () => {
 		getCollection,
 		getCollectionByCategory,
 		getTotalElements,
-	} = useDataContext();
+	} = useDataContext()
 
-	const { categoria: paramCategoria } = useParams();
-	const [catalogo] = dataCatalogo;
-	const [dataMuebles, setDataMuebles] = useState([]);
-	const [currentPage, setCurrentPage] = useState(1);
-	const [totalPages, setTotalPages] = useState(3); // Inicializamos en 1 página
-	const [categoria, setCategoria] = useState(null);
-	const [imagesLoaded, setImagesLoaded] = useState(false);
-	const [loading, setLoading] = useState(false); // Agregamos un estado de carga
+	const { categoria: paramCategoria } = useParams()
+	const [catalogo] = dataCatalogo
+	const [dataMuebles, setDataMuebles] = useState([])
+	const [currentPage, setCurrentPage] = useState(1)
+	const [totalPages, setTotalPages] = useState(3) // Inicializamos en 1 página
+	const [categoria, setCategoria] = useState(null)
+	const [imagesLoaded, setImagesLoaded] = useState(false)
+	const [loading, setLoading] = useState(false) // Agregamos un estado de carga
 
-	const elementosPorPagina = 12;
+	const elementosPorPagina = 8
 
 	const fetchMuebles = async () => {
-		setLoading(true); // Mostrar spinner de carga
+		setLoading(true) // Mostrar spinner de carga
 
-		let data;
+		let data
 		if (categoria) {
-			data = await getCollectionByCategory(categoria, currentPage);
+			data = await getCollectionByCategory(categoria, currentPage)
 		} else {
-			data = await getCollection(currentPage);
+			data = await getCollection(currentPage)
 		}
-		setDataMuebles(data);
+		setDataMuebles(data)
 
-		setLoading(false); // Ocultar spinner de carga
-	};
+		setLoading(false) // Ocultar spinner de carga
+	}
 
 	const getPages = async () => {
-		const totalElements = await getTotalElements();
-		const pages = Math.ceil(totalElements / elementosPorPagina);
-		setTotalPages(pages);
-	};
+		const totalElements = await getTotalElements()
+		const pages = Math.ceil(totalElements / elementosPorPagina)
+		setTotalPages(pages)
+	}
 
 	const handlePageChange = (newPage) => {
-		setCurrentPage(newPage);
-	};
+		setCurrentPage(newPage)
+	}
 
 	useEffect(() => {
-		getPages();
-	}, []);
+		getPages()
+	}, [])
 
 	useEffect(() => {
 		if (paramCategoria) {
-			setCategoria(paramCategoria);
+			setCategoria(paramCategoria)
 		}
 
-		fetchMuebles();
-	}, [currentPage, categoria, paramCategoria]);
+		fetchMuebles()
+	}, [currentPage, categoria, paramCategoria])
 
 	// Define un objeto de mapeo de parámetros a títulos
 	const titulos = {
 		dormitorio: "Muebles de dormitorio",
 		comedor: "Muebles de comedor",
 		personalizados: "Muebles a medida",
-	};
+	}
 
 	// Obtiene el título correspondiente al parámetro o "VER TODOS" por defecto
-	const titulo = titulos[paramCategoria] || "VER TODOS";
+	const titulo = titulos[paramCategoria] || "VER TODOS"
 
-	let bannerImg = catalogo?.bannerImg || [];
+	let bannerImg = catalogo?.bannerImg || []
 
 	return (
-		<main className=''>
+		<main className='mx-auto mt-4'>
 			{/* Carousel */}
-			<SliderCatalogo bannerImg={bannerImg} />
+			<div className=''>
+				<SliderCatalogo bannerImg={bannerImg} />
+			</div>
 
 			{/* Product colction */}
-			<section className='bg-white  py-8'>
-				<div className='container mx-auto flex items-center flex-wrap pt-4 pb-12'>
+			<section className='bg-white py-8'>
+				<div className='container mx-auto flex flex-wrap pt-4 pb-12'>
 					<nav
 						id='store'
 						className='w-full z-30 top-0 px-6 py-1'>
@@ -122,7 +124,7 @@ const Catalogo = () => {
 						</div>
 					</nav>
 
-					<div className='grid grid-cols-4 mx-auto gap-4 min-h-[50vh]'>
+					<div className='lg:flex lg:flex-wrap sm:grid grid-cols-2 lg:grid-cols-4 gap-2 mx-auto min-h-[50vh]'>
 						{loading ? (
 							<div className='col-span-4'>
 								<Spinner />
@@ -130,22 +132,26 @@ const Catalogo = () => {
 						) : (
 							dataMuebles?.map((card, index) => (
 								<div
-									key={index}
-									className='p-6 col-span-2 md:col-span-1 flex flex-col mx-auto'>
+									className={`p-6 col-span-1 flex flex-col  duration-200`}>
 									<Link
 										to={`/catalogo/${card.categoria.toLowerCase()}/${card.titulo.replace(
 											/\s+/g,
 											"_"
 										)}_${card.id}`}>
-										<img
-											className='hover:grow hover:shadow-lg sm:h-[24rem] aspect-auto w-full'
-											onLoad={() => setImagesLoaded(true)}
-											loading='lazyx'
-											src={imagesLoaded ? card.img : placeholderImg}
-										/>
-										<div
-											className='pt-3 flex items-center justify-between
-								'>
+										<div className='relative h-[20rem] sm:h-[18rem] w-[18rem] sm:w-[16rem] bg-gray-200 overflow-hidden duration-200 transition-all hover:shadow-2xl shadow-indigo-900'>
+											{/* Imagen */}
+											<img
+												className='object-fill object-top w-full h-full rounded '
+												onLoad={() => setImagesLoaded(true)}
+												loading='lazy'
+												src={imagesLoaded ? card.img : placeholderImg}
+												alt={card.titulo}
+											/>
+
+											{/* Superposición de oscurecimiento con efecto hover */}
+											<div className='absolute top-0 left-0 w-full h-full bg-black opacity-0 hover:opacity-10 rounded transition-opacity duration-300'></div>
+										</div>
+										<div className='pt-3 flex items-center justify-between'>
 											<p className='text-center font-semibold h-5 flex-1'>
 												{card.titulo}
 											</p>
@@ -156,7 +162,7 @@ const Catalogo = () => {
 						)}
 					</div>
 				</div>
-				<div className={`flex justify-center ${paramCategoria && "hidden"}`}>
+				<div className={`flex justify-center`}>
 					<Pagination
 						currentPage={currentPage}
 						totalPages={totalPages}
@@ -166,34 +172,29 @@ const Catalogo = () => {
 			</section>
 
 			{/* Footer Product */}
-			<article className='container mx-auto bg-white py-8 border-t border-gray-400'>
+			<article className='container mx-auto lg:px-4 bg-white py-8 border-t border-gray-400'>
 				<div className='container flex px-3 py-8 '>
 					<div className='w-full mx-auto flex flex-wrap'>
 						<div className='flex w-full lg:w-1/2 '>
 							<div className='px-3 md:px-0'>
-								<h3 className='font-bold text-gray-900'>About</h3>
+								<h3 className='font-bold text-gray-900'>Nosotros</h3>
 								<p className='py-4'>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Maecenas vel mi ut felis tempus commodo nec id erat.
-									Suspendisse consectetur dapibus velit ut lacinia.
+									Con más de 50 años en Esperanza, somos la esencia del diseño y
+									la artesanía en muebles. Fabricamos piezas únicas en serie y a
+									medida, utilizando las maderas más nobles. Descubre la calidad
+									y la distinción en cada rincón de tu hogar con Modikra.
 								</p>
 							</div>
 						</div>
 						<div className='flex w-full lg:w-1/2 lg:justify-end lg:text-right mt-6 md:mt-0'>
 							<div className='px-3 md:px-0'>
-								<h3 className='text-left font-bold text-gray-900'>Social</h3>
+								<h3 className='text-left font-bold text-gray-900'>
+									Redes Sociales
+								</h3>
 								<div className='w-full flex items-center py-4 mt-0'>
 									<a
-										href='#'
-										className='mx-2'>
-										<svg
-											className='w-6 h-6 fill-current'
-											viewBox='0 0 24 24'>
-											<path d='M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z' />
-										</svg>
-									</a>
-									<a
-										href='#'
+										href='https://www.facebook.com/profile.php?id=100054479050252'
+										target='_blank'
 										className='mx-2'>
 										<svg
 											className='w-6 h-6 fill-current'
@@ -202,21 +203,15 @@ const Catalogo = () => {
 										</svg>
 									</a>
 									<a
-										href='#'
+										href='https://www.instagram.com/modikramuebles/'
+										target='_blank'
 										className='mx-2'>
 										<svg
+											fill='#000000'
 											className='w-6 h-6 fill-current'
-											viewBox='0 0 24 24'>
-											<path d='M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z' />
-										</svg>
-									</a>
-									<a
-										href='#'
-										className='mx-2'>
-										<svg
-											className='w-6 h-6 fill-current'
-											viewBox='0 0 24 24'>
-											<path d='M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z' />
+											viewBox='0 0 24 24'
+											xmlns='http://www.w3.org/2000/svg'>
+											<path d='m16 12v-.001c0-2.209-1.791-4-4-4s-4 1.791-4 4 1.791 4 4 4c1.104 0 2.104-.448 2.828-1.171.723-.701 1.172-1.682 1.172-2.768 0-.021 0-.042-.001-.063v.003zm2.16 0c-.012 3.379-2.754 6.114-6.135 6.114-3.388 0-6.135-2.747-6.135-6.135s2.747-6.135 6.135-6.135c1.694 0 3.228.687 4.338 1.797 1.109 1.08 1.798 2.587 1.798 4.256 0 .036 0 .073-.001.109v-.005zm1.687-6.406v.002c0 .795-.645 1.44-1.44 1.44s-1.44-.645-1.44-1.44.645-1.44 1.44-1.44c.398 0 .758.161 1.018.422.256.251.415.601.415.988v.029-.001zm-7.84-3.44-1.195-.008q-1.086-.008-1.649 0t-1.508.047c-.585.02-1.14.078-1.683.17l.073-.01c-.425.07-.802.17-1.163.303l.043-.014c-1.044.425-1.857 1.237-2.272 2.254l-.01.027c-.119.318-.219.695-.284 1.083l-.005.037c-.082.469-.14 1.024-.159 1.589l-.001.021q-.039.946-.047 1.508t0 1.649.008 1.195-.008 1.195 0 1.649.047 1.508c.02.585.078 1.14.17 1.683l-.01-.073c.07.425.17.802.303 1.163l-.014-.043c.425 1.044 1.237 1.857 2.254 2.272l.027.01c.318.119.695.219 1.083.284l.037.005c.469.082 1.024.14 1.588.159l.021.001q.946.039 1.508.047t1.649 0l1.188-.024 1.195.008q1.086.008 1.649 0t1.508-.047c.585-.02 1.14-.078 1.683-.17l-.073.01c.425-.07.802-.17 1.163-.303l-.043.014c1.044-.425 1.857-1.237 2.272-2.254l.01-.027c.119-.318.219-.695.284-1.083l.005-.037c.082-.469.14-1.024.159-1.588l.001-.021q.039-.946.047-1.508t0-1.649-.008-1.195.008-1.195 0-1.649-.047-1.508c-.02-.585-.078-1.14-.17-1.683l.01.073c-.07-.425-.17-.802-.303-1.163l.014.043c-.425-1.044-1.237-1.857-2.254-2.272l-.027-.01c-.318-.119-.695-.219-1.083-.284l-.037-.005c-.469-.082-1.024-.14-1.588-.159l-.021-.001q-.946-.039-1.508-.047t-1.649 0zm11.993 9.846q0 3.578-.08 4.953c.005.101.009.219.009.337 0 3.667-2.973 6.64-6.64 6.64-.119 0-.237-.003-.354-.009l.016.001q-1.375.08-4.953.08t-4.953-.08c-.101.005-.219.009-.337.009-3.667 0-6.64-2.973-6.64-6.64 0-.119.003-.237.009-.354l-.001.016q-.08-1.375-.08-4.953t.08-4.953c-.005-.101-.009-.219-.009-.337 0-3.667 2.973-6.64 6.64-6.64.119 0 .237.003.354.009l-.016-.001q1.375-.08 4.953-.08t4.953.08c.101-.005.219-.009.337-.009 3.667 0 6.64 2.973 6.64 6.64 0 .119-.003.237-.009.354l.001-.016q.08 1.374.08 4.953z' />
 										</svg>
 									</a>
 								</div>
@@ -225,9 +220,11 @@ const Catalogo = () => {
 					</div>
 				</div>
 			</article>
+
+			{/* WhatsApp Button */}
 			<WhatsAppButton />
 		</main>
-	);
-};
+	)
+}
 
-export default Catalogo;
+export default Catalogo
