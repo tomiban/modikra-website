@@ -26,3 +26,7 @@ data.js
 
 # Local Netlify folder
 .netlify
+
+# Build y despliegue
+dist/
+.firebase/
